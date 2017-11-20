@@ -1,0 +1,40 @@
+---
+layout: base
+title: Archive of Dr-Kino Articles
+menuOption: archive
+---
+
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="indexHeader">All Articles</h1>
+    <hr />
+    <ul id="posts">
+      {% for post in site.posts %}
+        <li>
+          {% if forloop.index == 15 %}
+            <a id="item15"></a>
+          {% endif %}
+          {% include post_summary.html %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+    <div class="columnAd">
+
+    </div>
+
+    <h2>Latest Articles</h2>
+    <ul class="briefPosts">
+      {% for post in site.posts limit: 5 %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <h2>Popular Tags</h2>
+    <div>
+      {% tag_cloud font-size: 70 - 200%, threshold: 2 %}
+    </div>
+  </div>
+</div>
