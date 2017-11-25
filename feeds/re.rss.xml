@@ -10,7 +10,7 @@
     <language>en-gb</language>
 
     {% for post in site.posts %}
-      {% if post.tags contains 'Retro' %}
+      {% if post.tags contains 'ReverseEngineering' %}
         <item>
           <title>{{post.title}}</title>
           <link>https://dr-kino.github.io{{post.url}}</link>
