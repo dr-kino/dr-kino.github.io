@@ -3,7 +3,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
-    <title>DoctorKino - Retro Posts</title>
+    <title>DoctorKino - Reverse Engineering Posts</title>
     <link>https://dr-kino.github.io</link>
     <description>DoctorKino is blog about Programming, Embedded Systems, RF, Control, Digital Processing, Analog Processing, Security and Reverse Engineering</description>
     <lastBuildDate>{{site.time | date: "%d %b %Y %H:%M:%S %Z"}}</lastBuildDate>
