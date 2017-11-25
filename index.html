@@ -24,7 +24,7 @@ menuOption: home
 
     </div>
 
-    <h2>Main Track</h2>
+    <h2>Embedded Systems</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
@@ -36,15 +36,17 @@ menuOption: home
         {% endif %}
       {% endfor %}
     </ul>
+    <!--
     <div class="moreArticles">
-      <a href="/tag/retro#item5">More Retro Articles</a>
+      <a href="/tag/embeddedsystems#item5">More Embedded Systems Articles</a>
     </div>
+    -->
 
-    <h2>Fast Track</h2>
+    <h2>RF</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Programming" %}
+        {% if post.tags contains "Retro" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -52,11 +54,13 @@ menuOption: home
         {% endif %}
       {% endfor %}
     </ul>
+    <!--
     <div class="moreArticles">
-      <a href="/tag/programming#item5">More Programming Articles</a>
+      <a href="/tag/rf#item5">More RF Articles</a>
     </div>
+    -->
 
-    <h2>Emulation</h2>
+    <h2>Control</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
@@ -68,11 +72,13 @@ menuOption: home
         {% endif %}
       {% endfor %}
     </ul>
+    <!--
     <div class="moreArticles">
-      <a href="/tag/emulation#item5">More Emulation Articles</a>
+      <a href="/tag/control#item5">More Control Articles</a>
     </div>
+    -->
 
-    <h2>CP/M</h2>
+    <h2>Digital Processing</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
@@ -84,11 +90,13 @@ menuOption: home
         {% endif %}
       {% endfor %}
     </ul>
+    <!--
     <div class="moreArticles">
-      <a href="/tag/cpm#item5">More CP/M Articles</a>
+      <a href="/tag/digitalprocessing#item5">More Digital Processing Articles</a>
     </div>
+    -->
 
-    <h2>Linux</h2>
+    <h2>Analog Electronic</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
@@ -100,37 +108,13 @@ menuOption: home
         {% endif %}
       {% endfor %}
     </ul>
+    <!--
     <div class="moreArticles">
-      <a href="/tag/linux#item5">More Linux Articles</a>
+      <a href="/tag/analogelectronic#item5">More Analog Electronic Articles</a>
     </div>
+    -->
 
-    <h2>Commodore</h2>
-    <ul class="briefPosts">
-      {% assign numFound = 0 %}
-      {% for post in site.posts %}
-        {% if post.tags contains "Commodore" %}
-          {% assign numFound = numFound | plus: 1 %}
-          {% if numFound <= 5 %}
-            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </ul>
-
-    <h2>PDP-8</h2>
-    <ul class="briefPosts">
-      {% assign numFound = 0 %}
-      {% for post in site.posts %}
-        {% if post.tags contains "PDP-8" %}
-          {% assign numFound = numFound | plus: 1 %}
-          {% if numFound <= 5 %}
-            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </ul>
-
-    <h2>Assembly</h2>
+    <h2>Security</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
@@ -143,7 +127,23 @@ menuOption: home
       {% endfor %}
     </ul>
     <div class="moreArticles">
-      <a href="/tag/assembly#item5">More Assembly Articles</a>
+      <a href="/tag/security#item5">More Security Articles</a>
+    </div>
+
+    <h2>Reverse Engineering</h2>
+    <ul class="briefPosts">
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "Retro" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="moreArticles">
+      <a href="/tag/reverseengineering#item5">More Reverse Engineering Articles</a>
     </div>
 
   </div>
