@@ -1,0 +1,40 @@
+---
+layout: base
+menuOption: tagged
+---
+
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="indexHeader" title="Articles tagged with: {{ page.tag }}">{{ page.tag }}</h1>
+    <hr />
+    <ul id="posts">
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains page.tag %}
+          <li>
+            {% assign numFound = numFound | plus: 1 %}
+            {% if numFound == 5 %}
+              <a id="item5"></a>
+            {% endif %}
+            {% include post_summary.html %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+
+    <h2>Popular Tags</h2>
+    <div>
+      {% tag_cloud font-size: 70 - 200%, threshold: 2 %}
+    </div>
+
+    <h2>Latest Articles</h2>
+    <ul class="briefPosts">
+      {% for post in site.posts limit: 5 %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
