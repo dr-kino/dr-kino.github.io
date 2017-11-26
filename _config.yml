@@ -2,7 +2,7 @@ title: "Dr-Kino - Embedded Systems, RF, Control, Digital Processing, Analog Elec
 description: > # this means to ignore newlines until "baseurl:"
   Embedded Systems, RF, Control, Digital Processing, Analog Electronic, Security and Reverse Engineering.
 destination: ../gh-pages
-lsi:         false
+lsi:  false
 port: 4000
 markdown: kramdown
 permalink:   /:year/:month/:day/:title/
