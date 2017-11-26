@@ -115,7 +115,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "security" %}
+        {% if post.tags contains "Security" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -124,7 +124,7 @@ menuOption: home
       {% endfor %}
     </ul>
     <div class="moreArticles">
-      <a href="/tag/security/#item5">More Security Articles</a>
+      <a href="/tag/security#item5">More Security Articles</a>
     </div>
 
     <h2>Reverse Engineering</h2>
