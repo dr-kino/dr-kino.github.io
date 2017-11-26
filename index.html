@@ -25,7 +25,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Embedded Systems" %}
+        {% if post.tags contains "embeddedsystems" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -43,7 +43,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "RF" %}
+        {% if post.tags contains "rf" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -61,7 +61,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Control" %}
+        {% if post.tags contains "control" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -79,7 +79,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Digital Processing" %}
+        {% if post.tags contains "digitalprocessing" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -97,7 +97,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Analog Electronics" %}
+        {% if post.tags contains "analogelectronics" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -115,7 +115,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Security" %}
+        {% if post.tags contains "security" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -124,14 +124,14 @@ menuOption: home
       {% endfor %}
     </ul>
     <div class="moreArticles">
-      <a href="/tag/security#item15">More Security Articles</a>
+      <a href="/tag/security#item5">More Security Articles</a>
     </div>
 
     <h2>Reverse Engineering</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "Reverse Engineering" %}
+        {% if post.tags contains "reverseengineering" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
