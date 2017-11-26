@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Reversing a BIOS flash via hardware - First Steps</title>
+
+  <title>Reversing a BIOS flash via hardware - First Steps</title>
+  <meta name="description" content="Hello everyone!!!">
+
+  <meta name="keywords" content="Retro Vintage Programming Tinkering"/>
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/sitestyle.css" rel="stylesheet">
+  <link href="/css/html_pygments.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/">
+  <link rel="alternate" type="application/rss+xml" title="DR-KINO RSS Feed" href="http://feedproxy.google.com/DoctorKino" />
+
+  <!-- Fix for ie 5&6 where id doesnt render transparent images properly-->
+  <!--[if lte IE 6]>
+    <script defer type="text/javascript" src="/js/pngfix.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/js/html5shiv.3.7.2.min.js"></script>
+    <script src="/js/respond.1.4.2.min.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=vlifesystems"></script>
+
+  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script type="text/javascript">
+      window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"/tandc/#privacy","theme":"dark-bottom"};
+  </script>
+
+  <script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+  <!-- End Cookie Consent plugin -->
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DR-KINO</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li
+        
+        ><a href="/">Home</a></li>
+
+        <li
+        
+        ><a href="/archive">Archive</a></li>
+
+        
+
+        
+
+        
+
+        
+
+        <li
+        
+        ><a href="/about">About</a></li>
+      </ul>
+
+      <a href="http://feedproxy.google.com/" title="Subscribe to Doctor Kino's RSS Feed">
+        <img class="bannerIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
+      </a>
+
+      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Youtube-Buttons-831.html -->
+      <a href="http://youtube.com/channel/UCcCZ8SFeAXsOfjU79PKy16A" title="Doctor Kino's YouTube Channel">
+        <img class="bannerIcon" src="/images/youtube-small-square-32.png" alt="YouTube Channel"/>
+      </a>
+
+      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Twitter-Buttons-1124.html -->
+      <a href="http://twitter.com/kino_dr" title="@kino_dr on Twitter">
+        <img class="bannerIcon" src="/images/twitter-button-36.png" alt="@kino_dr on Twitter"/>
+      </a>
+
+
+      <!-- From: http://www.graphicsfuel.com/2011/05/email-icon-psd/ -->
+      <a href="mailto:doctorkinoo@gmail.com" title="Email us, we'd love to hear from you">
+        <img class="bannerIcon" src="/images/email.png" alt="Email"/>
+      </a>
+
+      <a href="https://github.com/dr-kino/dr-kino.github.io" title="Doctor Kino On Github ">
+        <img class="bannerIcon" src="/images/octocat_fluid.png" alt="Doctor Kino Repo on  Github"/>
+      </a>
+
+    </div><!--/.nav-collapse -->
+  </div>
+
+</nav>
+
+
+    <div id="content" class="container">
+      <div class="row">
+  <div class="col-md-8">
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="name"><a href="/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/" title="Reversing a BIOS flash via hardware - First Steps">Reversing a BIOS flash via hardware - First Steps</a></h1>
+    <span class="byLine">
+      by <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+           <a rel="author" itemprop="url" class="author" href="/profile/rafaelcavalcanti/">
+             <span itemprop="name">Rafael Cavalcanti</span>
+           </a>
+         </span>
+      <time itemprop="datePublished" datetime="2017-11-24">
+        24 November 2017
+      </time>
+    </span>
+
+
+    <!-- AddThis Button BEGIN -->
+    <div style="float: right;" class="addthis_toolbox addthis_default_style addthis_32x32_style">
+    <a class="addthis_button_google_plusone" g:plusone:count="false"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_reddit"></a>
+    <a class="addthis_button_compact"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=vlifesystems"></script>
+    <!-- AddThis Button END -->
+
+    <span class="tagLine">
+      <br />
+      Tags:
+      
+        <a rel="tag" href="/tag/reverseengineering">reverseengineering</a> &nbsp; &nbsp;
+      
+        <a rel="tag" href="/tag/security">security</a> &nbsp; &nbsp;
+      
+    </span>
+
+  </header>
+
+  <div class="articleBody" itemprop="articleBody">
+    <p>Hello everyone!!!</p>
+
+<p>This brief tutorial about dumping the BIOS (Basic Input/Output System) content directly via hardware (Programmer MiniPro TL866), will pass to you the procedure executed to get BIOS binary code. Other articles of this blog will cover binary contents analysis and some modifications based on its disassambly.</p>
+
+<p>As you might know, BIOS is an important security component inside the system/computer. Keeping it always updated is indispensable! The code is stored in a non-volatile memory (Flash) that runs every time the computer starts. There are also some sistemic failures (hardware), as improper written permission allowing partially changes in the code. Ingenious BIOS atacks are very efficient achieving system administrative privilege.</p>
+
+<p>Firstly, identify in the motherboard which memory stores the BIOS code. Historically this type of memory was known as CMOS due to the technology of the integrated circuit. Now a days, it is still usual to refer to this chip in this way. Anyway, you shall look for a Flash memory. This tutorial is using a motherboard (0HN7XN) present in a computer DELL Optiplex 380. The image bellow shows where the memory is located.</p>
+
+<p><img src="/images/posts/00001-A_CHANGED.png" /></p>
+
+<p>The memory model that stores the BIOS code is MX25L1605 and its encapsulation is SOP8.</p>
+
+<p>To read the memory content we need to remove it from the circuit board. To do this, use a iron soldering with a temperature of 250°C, solder sticks with a low melting point and after heating the chip terminals, remove it with a tweezers.</p>
+
+<p>Then, solder the memory in an adapter board (DIP) to be able to read the memory with Programmer MiniPro TL866. The image bellow shows the final result.</p>
+
+<p><img src="/images/posts/00001-B.png" /></p>
+
+<p>Now we have the hardware finished to reading, we are able to use a program that will control the Programmer MiniPro TL866. I used an open source program (https://github.com/vdudouyt/minipro) called “minipro”, all informations about installation is provided in the page project. I installed the program in a Debian 9 (Stretch) system and I don’t have any problems to do this.</p>
+
+<p>To dump the BIOS binary, I entered with the line command bellow:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">sudo ./minipro -r images/flashmemory.bin -p "MX25L1605 @SOP8"</code></pre></figure>
+
+<p>[RESULT I]</p>
+
+<p>The rusult of binary dumped by minipro can be seen with the program “hexdump” (“# apt-get install hexdump”, to install the program), for this enter with the line command bellow:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">hexdump -C images/cmos.bin</code></pre></figure>
+
+<p>[RESULT II]</p>
+
+<p>Now we use the program “binwalk” (# apt-get install binwalk ) to investigate the content dumped.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">binwalk -e images/cmos.bin</code></pre></figure>
+
+<p>[RESULT III]</p>
+
+<p>For a while I am going to restrict to say that the segment containing the BIOS is identified for “STING”. So, we are going to extract the BIOS binary from this file entering with following line command:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">dd if=images/cmos.bin of=images/bios_dell.bin bs=1 skip=65544 count=116830</code></pre></figure>
+
+<p>We certificate that the content is correct running the program “binwalk” again and we compare the output with the output we get in first time we run this program.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">binwalk -e images/bios_dell.bin</code></pre></figure>
+
+<p>[RESULT IV]</p>
+
+<p>Now we can only see the BIOS binary in a file!</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">hexdump -C images/bios_dell.bin | head</code></pre></figure>
+
+<p>Well, now that we extract the BIOS content from Flash memory we go take a look better inside the file using a collection of tools called “pev” (https://www.github.com/merces/pev). It comprises some programs to analyzer PE files. Hummm, maybe a new word?! So, the BIOS is a program defined like Portable Executable and in the next articles we talk more about this type of file and its format, I will explain mor about its goals and structure.</p>
+
+<p>The program “readpe”, contained inside pev tools, is used to do some analyzis. We could investigate the bios_dell.bin typing the line command bellow:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">readpe --header optional bios_dell.bin</code></pre></figure>
+
+<p>The command above return some informations about header of my BIOS. If you want to realize your own test, you can download the BIOS binary that we used here on (ADDRESS), before you using, please verify the file integrity with the hash bellow:</p>
+
+<p>[HASH]</p>
+
+<p>This is all for now. I hope that this contents is useful and from it you continue studying the reverse engineering subject. In a close future, I will teach how to be sure that the code segmented, in steps explained in this article, is correct and I will talk about how to disassembly the binary with a powerfull tool called Radare. In the next steps we will continue using some tools has been used up to here, maily the “readpe” and “binwalk”.</p>
+
+<p>I hope you had fun here!</p>
+
+  </div>
+</article>
+
+
+    <div style="clear: left;"></div>
+
+    
+      <hr />
+      <a rel="license" href="http://creativecommons.org/licenses/by/2.0/uk/">
+        <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.0/uk/88x31.png" />
+      </a>
+      <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">
+        Reversing a BIOS flash via hardware - First Steps
+      </span><br />
+
+      by
+      <a xmlns:cc="http://creativecommons.org/ns#" href="https://dr-kino.github.com/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/" property="cc:attributionName" rel="cc:attributionURL">
+      DoctorKino
+      </a>
+       is licensed under a
+      <a rel="license" href="http://creativecommons.org/licenses/by/2.0/uk/">
+      Creative Commons Attribution 2.0 UK: England & Wales License
+      </a>
+    
+
+    <hr style="clear:both;" />
+
+    
+
+    <hr />
+
+    <h2>Bookmark and Share</h2>
+    <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed"><img class="bookmarkIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
+    </a> Subscribe to RSS feed<br />
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="left:50px;top:50px;">
+      <a class="addthis_button_google_plusone" g:plusone:count="false"></a> &nbsp; Share on Google+<br />
+      <br />
+      <a class="addthis_button_facebook"></a> &nbsp; Share on Facebook<br />
+      <br />
+      <a class="addthis_button_twitter"></a> &nbsp; Share on Twitter<br />
+      <br />
+      <a class="addthis_button_reddit"></a> &nbsp; Share on Reddit<br />
+      <br />
+      <a class="addthis_button_compact"></a> &nbsp; Share elsewhere<br />
+    </div>
+    <!-- AddThis Button END -->
+
+    <hr style="clear:both;" />
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'DoctorKino';
+      var disqus_identifier = '/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/';
+      var disqus_url = 'https://dr-kino.github.com/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+
+  <div class="col-md-4">
+
+    <h2>Latest Articles</h2>
+    <ul class="briefPosts">
+      
+        <li><a href="/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/">Reversing a BIOS flash via hardware - First Steps</a></li>
+      
+    </ul>
+
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <strong>Legal:</strong> &nbsp;
+        <a href="/tandc/">Terms</a>
+
+        &nbsp; &nbsp;
+        <strong>RSS Feeds:</strong> &nbsp;
+        <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed">Full</a>,
+        <a href="http://feedproxy.google.com/DoctorKino-ReverseEngineeringPosts" title="Subscribe to DoctorKino's RSS Feed">ReverseEngineering</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+    <!-- Google Analytics tracking code -->
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-4388762-2");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
