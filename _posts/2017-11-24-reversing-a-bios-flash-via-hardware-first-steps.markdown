@@ -3,7 +3,7 @@ layout: article
 title: Reversing a BIOS flash via hardware - First Steps
 tags:
   - Reverse Engineering
-  - Security
+  - security
 author:
   name: Rafael Cavalcanti
   url: /profile/rafaelcavalcanti/
