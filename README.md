@@ -1,5 +1,5 @@
 # Dr-Kino
-[Dr-Kino](https://dr-kino.github.io) is a blog devoted to articles about Retro Computers, Open Source, Programming and General Technical Tinkering. It's main author is [Rafael Cavalcanti](https://dr-kino.github.io/profile/rafaelcavalcanti).
+[Dr-Kino](https://dr-kino.github.io) is a blog devoted to articles about Embedded Systems, RF, Control, Digital Processing, Analog Electronic, Security and Reverse Engineering. It's main author is [Rafael Cavalcanti](https://dr-kino.github.io/profile/rafaelcavalcanti).
 
 Dr-Kino uses [jekyll](http://jekyllrb.com/) to create a statically generated site and the source for the site is hosted on [GitHub](https://github.com/dr-kino/dr-kino.github.io).
 
