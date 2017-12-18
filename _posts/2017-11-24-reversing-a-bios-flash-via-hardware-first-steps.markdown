@@ -203,7 +203,7 @@ Optional/Image header
     Size of heap space to commit:    0x1000
 {% endhighlight %}
 
-The command above return some informations about header of my BIOS. If you want to realize your own test, you can download the BIOS binary that we used here on (ADDRESS), before you using, please verify the file integrity with the hash (sha1sum) bellow:
+The command above return some informations about header of my BIOS. If you want to realize your own test, you can download the BIOS binary that we used here on (https://github.com/dr-kino/Data/tree/master/bios/images.zip), before you use, please verify the file integrity with the hash (sha1sum) bellow:
 
 {% highlight text %}
 c9ae0279e536f47cee49d71a477bdf33695a14c5
