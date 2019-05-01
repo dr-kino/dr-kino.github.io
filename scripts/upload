@@ -3,5 +3,5 @@
 # Upload this site to the host
 ####################################################
 
-sitecopy --update techtinkering 
+#sitecopy --update "mirror"
 
