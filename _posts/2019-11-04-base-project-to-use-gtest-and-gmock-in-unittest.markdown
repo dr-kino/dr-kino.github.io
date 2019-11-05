@@ -17,3 +17,47 @@ The goal of this post is to create a base to be used in all unit tests project t
 #apt-get install libgmock-dev
 ```
 
+After installation, we can create three files: CMakeLists.txt, Main.cpp and UnitUnderTest.cpp. These files will be the base for our project and below we can see the content of each one.
+
+CMakeLists.txt
+```
+cmake_minimum_required(VERSION 2.6)
+
+include_directories(/usr/include)
+link_directories(/usr/lib)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+set(sources
+		Main.cpp
+		UnitUnderTest.cpp
+		)
+
+add_executable(UnitTests ${sources})
+
+target_link_libraries(UnitTests gtest)
+target_link_libraries(UnitTests gmock)
+target_link_libraries(UnitTests pthread)
+```
+
+Main.cpp
+```c++
+#include "gmock/gmock.h"
+
+int main(int argc, char** argv) {
+	::testing::InitGoogleMock(&argc, argv);
+	return RUN_ALL_TESTS();
+}
+```
+
+UnitUnderTest.cpp
+```c++
+#include "gmock/gmock.h"
+
+TEST(Test_UnitUnderTest, TestCaseOne) {
+
+}
+```
