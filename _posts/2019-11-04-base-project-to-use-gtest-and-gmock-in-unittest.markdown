@@ -2,6 +2,7 @@
 layout: article
 title: Base project to use gtest and gmock for unit tests
 tags:
+  - softwaredevelopment
   - embeddedsystems
 author:
   name: Rafael Cavalcanti

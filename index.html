@@ -133,5 +133,21 @@ menuOption: home
       <a href="/tag/reverseengineering#item5">More Reverse Engineering Articles</a>
     </div>
 
+    <h2>Software Development</h2>
+    <ul class="briefPosts">
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "softwaredevelopment" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="moreArticles">
+      <a href="/tag/softwaredevelopment#item5">More Software Development Articles</a>
+    </div>
+
   </div>
 </div>
