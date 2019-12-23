@@ -13,9 +13,11 @@ This post will describe a setup to start working with test coverage. First of al
 
 It is related to a very small piece of code to demonstrate how to start a project providing test coverage metrics. But for what it is important? In resume, there are many motives to do that but I like to concentrante in one: The Quality of Your Job. When you provide unit tests for your code it means that you are a person concerned about the quality of your delivered work and want to improve your skills, for instance. And the way to know if you are testing all the lines is through code coverage tool.
 
-The tool chosen to execute code coverage is [gcov](https://linux.die.net/man/1/gcov), with this tool you will be able to know how many times the lines of your program was executed and if there are lines non executed by your tests cases. You can see the results provided by the gcov in the next image, basically it shows the total of line in your program and the lines runned by the test program, note highlighted in green all line tested and you can see also that some lines regarding to library have included in analysis.
+The tool chosen to execute code coverage is [Gcov](https://linux.die.net/man/1/gcov), with this tool you will be able to know how many times the lines of your program was executed and if there are lines non executed by your tests cases. You can see the results provided by the gcov in the next image, basically it shows the total of line in your program and the lines runned by the test program, note highlighted in green all line tested and you can see also that some lines regarding to library have included in analysis.
 
 <img src="/images/posts/00005-E.png" />
+
+For demonstrates the usage of code coverage using [Google Test](https://github.com/google/googletest), [Gcov](https://linux.die.net/man/1/gcov) and [Lcov](https://linux.die.net/man/1/lcov) a simple example was done in C++ language, it's a simple class that add to integer values and the methods declaration can be seen afterward class, as you can see below. Please, considere that I am not concerned with a safety code, it was written just to demonstrante how to create a code coverage setup.
 
 Class declaration:
 {% highlight c++ %}
@@ -50,6 +52,8 @@ int Sum::executeSum(void) {
 }
 {% endhighlight %}
 
+Regarding to the test case it is really simple, first an object is instantiated and the values are setted, afterwards the [Google Test](https://github.com/google/googletest) framework is called to compare if the sum operation was sucessfully executed, for this specific test case the operation is 10 + 10 = 20.
+
 Test case:
 {% highlight c++ %}
 TEST(BraveCoverage, TestCaseOne) {
@@ -59,6 +63,40 @@ TEST(BraveCoverage, TestCaseOne) {
 
     EXPECT_EQ(20, SumUnderTest.executeSum());
 }
+{% endhighlight %}
+
+
+It's possible see the test case result also.
+
+Test Results:
+```
+[==========] Running 1 test from 1 test case.
+[----------] Global test environment set-up.
+[----------] 1 test from BraveCoverage
+[ RUN      ] BraveCoverage.TestCaseOne
+[       OK ] BraveCoverage.TestCaseOne (0 ms)
+[----------] 1 test from BraveCoverage (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test case ran. (0 ms total)
+[  PASSED  ] 1 test.
+```
+To build the project you need to execute the following commands inside the [test](https://github.com/dr-kino/BraveCoverage/tree/master/test) directory:
+```
+# mkdir build && cp build && cmake ..
+# make init
+# make gcov
+# make lcov
+```
+
+CMakeLists.txt (make init)
+{% highlight cmake %}
+add_custom_target(init
+    COMMAND ${CMAKE_MAKE_PROGRAM} clean
+    COMMAND rm -f ${OBJECT_DIR}/*.gcno
+    COMMAND rm -f ${OBJECT_DIR}/*.gcda
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
 {% endhighlight %}
 
 CMakeLists.txt (make gcov):
@@ -87,10 +125,14 @@ add_custom_command(TARGET lcov
     )
 {% endhighlight %}
 
+The results for the code coverage execution can be seen in the four images below, it is executed for four modules located in src and test/src projetc directories. In the first two image is possible to see the result for the test modules itself and the last two images is related to the project core, it means the main program. For reasons of quality, the module brave_coverage should be focused in the code coverage results.
+
 <img src="/images/posts/00005-A.png" />
 
-<img src="/images/posts/00005-C.png" />
+<img src="/images/posts/00005-D.png" />
 
 <img src="/images/posts/00005-B.png" />
 
-<img src="/images/posts/00005-D.png" />
+<img src="/images/posts/00005-C.png" />
+
+To study this test case, please go to the oficial [git page](https://github.com/dr-kino/BraveCoverage) and clone/download it, follow the instructions to build the project. Maybe you will want to adapt it for your personal project, feel free to do that and have fun.
