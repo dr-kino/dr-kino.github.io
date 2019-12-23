@@ -18,7 +18,7 @@ The tool chosen to execute code coverage is [gcov](https://linux.die.net/man/1/g
 <img src="/images/posts/00005-E.png" />
 
 Class declaration:
-``` 
+{% highlight c++ %}
 class Sum
 {
 public:
@@ -33,10 +33,10 @@ private:
     int _A = 0;
     int _B = 0;
 };
-```
+{% endhighlight %}
 
 Methods definition:
-```
+{% highlight c++ %}
 void Sum::setAValue(int A) {
     _A = A;
 }
@@ -48,10 +48,10 @@ void Sum::setBValue(int B) {
 int Sum::executeSum(void) {
     return _A + _B;
 }
-```
+{% endhighlight %}
 
 Test case:
-```
+{% highlight c++ %}
 TEST(BraveCoverage, TestCaseOne) {
     Sum SumUnderTest;
     SumUnderTest.setAValue(10);
@@ -59,10 +59,10 @@ TEST(BraveCoverage, TestCaseOne) {
 
     EXPECT_EQ(20, SumUnderTest.executeSum());
 }
-```
+{% endhighlight %}
 
 CMakeLists.txt (make gcov):
-```
+{% highlight cmake %}
 add_custom_command(TARGET gcov
     COMMAND echo "=================== GCOV ===================="
     COMMAND gcov -b ${CMAKE_SOURCE_DIR}/src/*.cpp -o ${OBJECT_DIR}
@@ -74,10 +74,10 @@ add_custom_command(TARGET gcov
     COMMAND echo "-- Generating HTML output files"
     COMMAND genhtml main_coverage.info --output-directory out
     )
-```
+{% endhighlight %}
 
 CMakeLists.txt (make lcov):
-```
+{% highlight cmake %}
 add_custom_command(TARGET lcov
     COMMAND echo "=================== LCOV ===================="
     COMMAND echo "-- Passing lcov tool under code coverage"
@@ -85,7 +85,7 @@ add_custom_command(TARGET lcov
     COMMAND echo "-- Generating HTML output files"
     COMMAND genhtml lcoverage/main_coverage.info --output-directory lcoverage
     )
-```
+{% endhighlight %}
 
 <img src="/images/posts/00005-A.png" />
 
