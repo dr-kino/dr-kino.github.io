@@ -127,7 +127,7 @@ add_custom_command(TARGET lcov
     )
 {% endhighlight %}
 
-The results for the code coverage execution can be seen in the four images below, it is executed for four modules located in src and test/src projetc directories. In the first two images is possible to see the result for the test modules itself and the last two images are related to the project core, it means the main program. For reasons of quality, the module brave_coverage should be focused in the code coverage results.
+The results for the code coverage execution can be seen in the four images below, it was executed for four modules located in src and test/src projetc directories. In the first two images is possible to see the result for the test modules itself and the last two images are related to the project core, it means the main program. For reasons of quality, the module brave_coverage should be focused in the code coverage results.
 
 <img src="/images/posts/00005-A.png" />
 
