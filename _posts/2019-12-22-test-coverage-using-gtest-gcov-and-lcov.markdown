@@ -138,3 +138,5 @@ The results for the code coverage execution can be seen in the four images below
 <img src="/images/posts/00005-C.png" />
 
 To study this test case, please go to the oficial [git page](https://github.com/dr-kino/BraveCoverage) and clone/download it, follow the instructions to build the project. Maybe you will want to adapt it for your personal project, feel free to do that and have fun.
+
+<iframe width="560" height="315" src="https://youtu.be/2FlF-DtWegI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
