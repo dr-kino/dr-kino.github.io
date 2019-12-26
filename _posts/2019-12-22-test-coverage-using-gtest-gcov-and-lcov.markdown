@@ -8,8 +8,6 @@ author:
   url: /profile/rafaelcavalcanti/
 licence: cc_attrib
 ---
-library("htmltools")
-library("vembedr")
 
 This post will describe a setup to start working with test coverage. First of all, I would like to highlight the GitHub link of this project [BraveCoverage](https://github.com/dr-kino/BraveCoverage)
 
@@ -141,8 +139,4 @@ The results for the code coverage execution can be seen in the four images below
 
 To study this test case, please go to the oficial [git page](https://github.com/dr-kino/BraveCoverage) and clone/download it, follow the instructions to build the project. Maybe you will want to adapt it for your personal project, feel free to do that and have fun.
 
-embed_url("https://www.youtube.com/watch?v=uV4UpCq2azs")
-
-{% youtube oHg5SJYRHA0 %}
-
-<iframe width="420" height="315" src="https://youtu.be/2FlF-DtWegI" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2FlF-DtWegI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
