@@ -30,6 +30,15 @@ To write this post I am using the [HackRF One](https://greatscottgadgets.com/hac
     * USB-powered
     * open source hardware
 
+So, I will talk about the tools that helped me to do the first analysis. Are they: 
+    - Osmocom FFT: This tool helped me to identify the frequency of my target;
+    - Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
+    - Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.
+
+The next session will describe the work done so far.
+
+## Osmocom FFT Tool
+
 To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from remote control. To find this frequency I used the internet to research the most common RF signal characteristics, after tune the SDR in 433MHz was possibel to see the signal 1.8MHz (+) diverted from the center.
 
 <img src="/images/posts/00006-A.png" />
@@ -40,13 +49,15 @@ In the video below is possible to see the time behaviour of signal as well as th
 
 Next steps will be analyse the data, probably I will need to investigate hot to decoding the signal, before that of course I will try to open my car with replay attack. I believe it will not work because for this kind of system the minimum security mechanism used to be present.
 
+## Inspectrum Tool
+
 In two next image is possible to observe that the signal is using the [Amplitude Modulation](https://en.wikipedia.org/wiki/Amplitude_modulation) ASK (short brief on wiki). Another thhing that could be noticed is related to the first part of the transmission, there are 14 square waveform cycles, it is used to synchonize transmitter and receiver targets.
 
 <img src="/images/posts/00006-B.png" />
 
 <img src="/images/posts/00006-C.png" />
 
-## Gnu Radio Companion
+## Gnu Radio Companion Tool
 
 With [Gnu Radio Companion](https://www.gnuradio.org/)
 
