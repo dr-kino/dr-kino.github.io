@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Investigating Car Key (RF Remote Control) - Part 1
+title: Investigating Car Key (RF Remote Control) With HackRF One - Part 1
 tags:
   - reverseengineering
   - security

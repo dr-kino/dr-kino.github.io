@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Base project to use gtest and gmock for unit tests
+title: Base Project to Use GTest and GMock for Unit Tests
 tags:
   - softwaredevelopment
   - embeddedsystems

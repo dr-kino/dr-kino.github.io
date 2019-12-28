@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Reversing a BIOS flash via hardware - First Steps
+title: Reversing a BIOS Flash Via Hardware - First Steps
 tags:
   - reverseengineering
   - security

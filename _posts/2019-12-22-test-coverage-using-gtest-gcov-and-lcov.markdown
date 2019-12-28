@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Test coverage using Google Test, GCov and LCov
+title: Test Coverage Using Google Test, GCov and LCov
 tags:
   - softwaredevelopment
 author:
