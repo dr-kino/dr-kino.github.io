@@ -11,7 +11,7 @@ author:
 licence: cc_attrib
 ---
 
-First of all, I would like to register that this post has nointention to teach how to break the laws, to ensure this I will omit the car model. I want to mension that it is just a theme that should be developed for study and research purposes, I will write the next article as soon as relevant findings emerge. As I have no much time to be dedicated in this research, maybe it will take long time until next publication, because of this the current article will talsk a little bit about some tools devoted to Software Defined Radio, this way you can start your proper research related to SDR.
+First of all, I would like to register that this post has no intention to teach how to break the laws, to ensure this I will omit the car model. I want to mension that it is just a theme that should be developed for study and research purposes, I will write the next article as soon as relevant findings emerge. As I have no much time to be dedicated in this research, maybe it will take long time until next publication, because of this the current article will talsk a little bit about some tools devoted to Software Defined Radio, this way you can start your proper research related to SDR.
 
 To write this post I am using the [HackRF One](https://greatscottgadgets.com/hackrf/one/) as a hadrware to interfaces with real world. The main characteristics of the HackRF hardware/project are:
 
@@ -30,7 +30,7 @@ To write this post I am using the [HackRF One](https://greatscottgadgets.com/hac
     * USB-powered
     * open source hardware
 
-<img src="/images/posts/00006-E.png" />
+<img src="/images/posts/00006-E.jpg" />
 
 <img src="/images/posts/00006-A.png" />
 
