@@ -30,6 +30,8 @@ To write this post I am using the [HackRF One](https://greatscottgadgets.com/hac
     * USB-powered
     * open source hardware
 
+To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from cremote control.
+
 <img src="/images/posts/00006-A.png" />
 
 <img src="/images/posts/00006-B.png" />
