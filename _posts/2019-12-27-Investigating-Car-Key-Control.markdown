@@ -30,7 +30,7 @@ To write this post I am using the [HackRF One](https://greatscottgadgets.com/hac
     * USB-powered
     * open source hardware
 
-<center><img src="/images/posts/00006-E.jpg" alt="drawing" width="200" /></center>
+<center><img src="/images/posts/00006-E.jpg" alt="drawing" width="400" /></center>
 
 <img src="/images/posts/00006-A.png" />
 
