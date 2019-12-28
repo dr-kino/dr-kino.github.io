@@ -34,8 +34,12 @@ To identify the correct frequency of remote control I used a tool called osmocom
 
 <img src="/images/posts/00006-A.png" />
 
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/cPqFquCdkTw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
 <img src="/images/posts/00006-B.png" />
 
 <img src="/images/posts/00006-C.png" />
 
 <img src="/images/posts/00006-D.png" />
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/8gAM07suhzY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
