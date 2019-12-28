@@ -30,15 +30,25 @@ To write this post I am using the [HackRF One](https://greatscottgadgets.com/hac
     * USB-powered
     * open source hardware
 
-To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from cremote control.
+To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from remote control. To find this frequency I used the internet to research the most common RF signal characteristics, after tune the SDR in 433MHz was possibel to see the signal 1.8MHz (+) diverted from the center.
 
 <img src="/images/posts/00006-A.png" />
 
+In the video below is possible to see the time behaviour of signal as well as the deviation from 433MHz frequency.
+
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/cPqFquCdkTw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+
+Next steps will be analyse the data, probably I will need to investigate hot to decoding the signal, before that of course I will try to open my car with replay attack. I believe it will not work because for this kind of system the minimum security mechanism used to be present.
+
+In two next image is possible to observe that the signal is using the [Amplitude Modulation](https://en.wikipedia.org/wiki/Amplitude_modulation) ASK (short brief on wiki). Another thhing that could be noticed is related to the first part of the transmission, there are 14 square waveform cycles, it is used to synchonize transmitter and receiver targets.
 
 <img src="/images/posts/00006-B.png" />
 
 <img src="/images/posts/00006-C.png" />
+
+## Gnu Radio Companion
+
+With [Gnu Radio Companion](https://www.gnuradio.org/)
 
 <img src="/images/posts/00006-D.png" />
 
