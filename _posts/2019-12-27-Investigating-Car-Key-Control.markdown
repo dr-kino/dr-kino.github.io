@@ -31,9 +31,9 @@ To write this post I am using the [HackRF One](https://greatscottgadgets.com/hac
     * open source hardware
 
 So, I will talk about the tools that helped me to do the first analysis. Are they: 
-    - Osmocom FFT: This tool helped me to identify the frequency of my target;
-    - Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
-    - Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.
+    * Osmocom FFT: This tool helped me to identify the frequency of my target;
+    * Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
+    * Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.
 
 The next session will describe the work done so far.
 
@@ -59,7 +59,7 @@ In two next image is possible to observe that the signal is using the [Amplitude
 
 ## Gnu Radio Companion Tool
 
-With [Gnu Radio Companion](https://www.gnuradio.org/)
+With [Gnu Radio Companion](https://www.gnuradio.org/) you can setup a large number of configuration for your RF project, there are a lot of filters, gain modules, coding and decoding blocks, instrumentation like scope, FFT tool, histogram tool, etc. To start my experience with Gnu Radio and HackRF I used the easy example developed by [Ettus Research] (https://www.youtube.com/watch?v=KWeY2yqwVA0), it is a FM Radio. The result of my tests coul be seen in [youtube](https://www.youtube.com/embed/8gAM07suhzY).
 
 <img src="/images/posts/00006-D.png" />
 
