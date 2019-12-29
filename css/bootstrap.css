@@ -1569,7 +1569,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
-  background-color: #f5f5f5;
+  background-color: #2D2D2D;
   border: 1px solid #cccccc;
   border-radius: 0;
 }
@@ -5690,14 +5690,14 @@ button.list-group-item-danger.active:focus {
 }
 .panel-default > .panel-heading {
   color: #333333;
-  background-color: #f5f5f5;
+  background-color: #2D2D2D;
   border-color: transparent;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: transparent;
 }
 .panel-default > .panel-heading .badge {
-  color: #f5f5f5;
+  color: #2D2D2D;
   background-color: #333333;
 }
 .panel-default > .panel-footer + .panel-collapse > .panel-body {

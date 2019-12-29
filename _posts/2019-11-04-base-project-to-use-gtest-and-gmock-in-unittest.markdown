@@ -12,7 +12,7 @@ licence: cc_attrib
 
 The goal of this post is to create a base to be used in all unit tests project that uses google test and google mock framework. Here I am configuring the environment for a Debian distribution and, of course, the commands below is valid only for distribution Debian based. So, first thing first, we need to install all dependencies as following:
 
-```
+```text
 #apt-get install libgtest-dev
 #apt-get install google-mock
 #apt-get install libgmock-dev
@@ -21,7 +21,7 @@ The goal of this post is to create a base to be used in all unit tests project t
 After installation, we can create three files: CMakeLists.txt, Main.cpp and UnitUnderTest.cpp. These files will be the base for our project and below we can see the content of each one.
 
 CMakeLists.txt
-```
+```cmake
 cmake_minimum_required(VERSION 2.6)
 
 include_directories(/usr/include)
@@ -65,7 +65,7 @@ TEST(Test_UnitUnderTest, TestCaseOne) {
 
 After the build, commands "cmake .." and "make", the output below can be seen running ./UnitTests.
 
-```
+```text
 [==========] Running 1 test from 1 test case.
 [----------] Global test environment set-up.
 [----------] 1 test from Test_UnitUnderTest
