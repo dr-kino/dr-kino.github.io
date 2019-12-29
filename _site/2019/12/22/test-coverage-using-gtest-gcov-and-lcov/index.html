@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Test Coverage Using Google Test, GCov and LCov</title>
+
+  <title>Test Coverage Using Google Test, GCov and LCov</title>
+  <meta name="description" content="This post will describe a setup to start working with test coverage. First of all, I would like to highlight the GitHub link of this project BraveCoverage">
+
+  <meta name="keywords" content="Retro Vintage Programming Tinkering"/>
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/sitestyle.css" rel="stylesheet">
+  <link href="/css/html_pygments.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/">
+  <link rel="alternate" type="application/rss+xml" title="DR-KINO RSS Feed" href="http://feedproxy.google.com/DoctorKino" />
+
+  <!-- Fix for ie 5&6 where id doesnt render transparent images properly-->
+  <!--[if lte IE 6]>
+    <script defer type="text/javascript" src="/js/pngfix.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/js/html5shiv.3.7.2.min.js"></script>
+    <script src="/js/respond.1.4.2.min.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=vlifesystems"></script>
+
+  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script type="text/javascript">
+      window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"/tandc/#privacy","theme":"dark-bottom"};
+  </script>
+
+  <script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+  <!-- End Cookie Consent plugin -->
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DR-KINO</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li
+        
+        ><a href="/">Home</a></li>
+
+        <li
+        
+        ><a href="/archive">Archive</a></li>
+
+        
+
+        
+
+        
+
+        
+
+        <li
+        
+        ><a href="/about">About</a></li>
+      </ul>
+
+      <a href="http://feedproxy.google.com/" title="Subscribe to Doctor Kino's RSS Feed">
+        <img class="bannerIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
+      </a>
+
+      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Youtube-Buttons-831.html -->
+      <a href="http://youtube.com/channel/UCcCZ8SFeAXsOfjU79PKy16A" title="Doctor Kino's YouTube Channel">
+        <img class="bannerIcon" src="/images/youtube-small-square-32.png" alt="YouTube Channel"/>
+      </a>
+
+      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Twitter-Buttons-1124.html -->
+      <a href="http://twitter.com/kino_dr" title="@kino_dr on Twitter">
+        <img class="bannerIcon" src="/images/twitter-button-36.png" alt="@kino_dr on Twitter"/>
+      </a>
+
+
+      <!-- From: http://www.graphicsfuel.com/2011/05/email-icon-psd/ -->
+      <a href="mailto:doctorkinoo@gmail.com" title="Email us, we'd love to hear from you">
+        <img class="bannerIcon" src="/images/email.png" alt="Email"/>
+      </a>
+
+      <a href="https://github.com/dr-kino/dr-kino.github.io" title="Doctor Kino On Github ">
+        <img class="bannerIcon" src="/images/octocat_fluid.png" alt="Doctor Kino Repo on  Github"/>
+      </a>
+
+    </div><!--/.nav-collapse -->
+  </div>
+
+</nav>
+
+
+    <div id="content" class="container">
+      <div class="row">
+  <div class="col-md-8">
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="name"><a href="/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/" title="Test Coverage Using Google Test, GCov and LCov">Test Coverage Using Google Test, GCov and LCov</a></h1>
+    <span class="byLine">
+      by <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+           <a rel="author" itemprop="url" class="author" href="/profile/rafaelcavalcanti/">
+             <span itemprop="name">Rafael Cavalcanti</span>
+           </a>
+         </span>
+      <time itemprop="datePublished" datetime="2019-12-22">
+        22 December 2019
+      </time>
+    </span>
+
+
+    <!-- AddThis Button BEGIN -->
+    <div style="float: right;" class="addthis_toolbox addthis_default_style addthis_32x32_style">
+    <a class="addthis_button_google_plusone" g:plusone:count="false"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_reddit"></a>
+    <a class="addthis_button_compact"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=vlifesystems"></script>
+    <!-- AddThis Button END -->
+
+    <span class="tagLine">
+      <br />
+      Tags:
+      
+        <a rel="tag" href="/tag/softwaredevelopment">softwaredevelopment</a> &nbsp; &nbsp;
+      
+    </span>
+
+  </header>
+
+  <div class="articleBody" itemprop="articleBody">
+    <p>This post will describe a setup to start working with test coverage. First of all, I would like to highlight the GitHub link of this project <a href="https://github.com/dr-kino/BraveCoverage">BraveCoverage</a></p>
+
+<p>It is related to a very small piece of code to demonstrate how to start a project providing test coverage metrics. But why this is important? In resume, there are many reasons to do that but I would like to focus in one: The Quality of Your Job. When you provide unit tests for your code it means that you are a person concerned about the quality of your delivered work and want to improve your skills, for instance. And the way to know if you are testing all the lines is through code coverage tool.</p>
+
+<p>The tool chosen to execute code coverage is <a href="https://linux.die.net/man/1/gcov">Gcov</a>, with this tool you will be able to know how many times the lines of your program was executed and if there are lines non executed by your tests cases. You can see the results provided by the gcov in the next image, basically it shows the total of line in your program and the lines runned by the test program, note highlighted in green all line tested and you can see also that some lines regarding to library have been included in analysis.</p>
+
+<p><img src="/images/posts/00005-E.png" /></p>
+
+<p>To demonstrates the usage of code coverage using <a href="https://github.com/google/googletest">Google Test</a>, <a href="https://linux.die.net/man/1/gcov">Gcov</a> and <a href="https://linux.die.net/man/1/lcov">Lcov</a> a simple example was done in C++ language, it’s a simple class that add to integer values and the methods declaration can be seen afterward class, as you can see below. Please, considere that I am not concerned with a safety code, it was written just to demonstrante how to create a code coverage setup.</p>
+
+<p>Class declaration:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Sum</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Sum</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+    <span class="o">~</span><span class="n">Sum</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+
+    <span class="kt">void</span> <span class="n">setAValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">setBValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">B</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">executeSum</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">_A</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">_B</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Methods definition:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Sum</span><span class="o">::</span><span class="n">setAValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_A</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Sum</span><span class="o">::</span><span class="n">setBValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_B</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Sum</span><span class="o">::</span><span class="n">executeSum</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">_A</span> <span class="o">+</span> <span class="n">_B</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Regarding to the test case it is really simple, first an object is instantiated and the values are setted, afterwards the <a href="https://github.com/google/googletest">Google Test</a> framework is called to compare if the sum operation was sucessfully executed, for this specific test case the operation is 10 + 10 = 20.</p>
+
+<p>Test case:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEST</span><span class="p">(</span><span class="n">BraveCoverage</span><span class="p">,</span> <span class="n">TestCaseOne</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Sum</span> <span class="n">SumUnderTest</span><span class="p">;</span>
+    <span class="n">SumUnderTest</span><span class="p">.</span><span class="n">setAValue</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">SumUnderTest</span><span class="p">.</span><span class="n">setBValue</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">SumUnderTest</span><span class="p">.</span><span class="n">executeSum</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It is also possible to see the test case result.</p>
+
+<p>Test Results:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">[==========] Running 1 test from 1 test case.
+[----------] Global test environment set-up.
+[----------] 1 test from BraveCoverage
+[ RUN      ] BraveCoverage.TestCaseOne
+[       OK ] BraveCoverage.TestCaseOne (0 ms)
+[----------] 1 test from BraveCoverage (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test case ran. (0 ms total)
+[  PASSED  ] 1 test.
+</span></code></pre></div></div>
+<p>To build the project you need to execute the following commands inside the <a href="https://github.com/dr-kino/BraveCoverage/tree/master/test">test</a> directory:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span> mkdir build <span class="o">&amp;&amp;</span> cp build <span class="o">&amp;&amp;</span> cmake ..
+<span class="gp">#</span> make init
+<span class="gp">#</span> make gcov
+<span class="gp">#</span> make lcov
+</code></pre></div></div>
+
+<p>The first line above just creates the build folder, join in it and executes cmake.</p>
+
+<p>The “make init” step executes the clean command and removes the files generated by a previous “make gcov” command, this command should be executed ALWAYS before the next one because it is responsible for the build. Next step “make gcov” generates the metrics for code coverage, with this command is possible to see the results in prompt and the last but not least, the command “make lcov” produces a front end (html) to the test coverage results, it cosumes the *.gcno and *.gcda generated file through the previous command. Finally the “make lcov” uses the tool genhtml to group the html files generated in a hierarchical way.</p>
+
+<p>Below you can see the CMakeFiles.txt snippets that references the commands described before.</p>
+
+<p>CMakeLists.txt (make init)</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_custom_target</span><span class="p">(</span>init
+    COMMAND <span class="si">${</span><span class="nv">CMAKE_MAKE_PROGRAM</span><span class="si">}</span> clean
+    COMMAND rm -f <span class="si">${</span><span class="nv">OBJECT_DIR</span><span class="si">}</span>/*.gcno
+    COMMAND rm -f <span class="si">${</span><span class="nv">OBJECT_DIR</span><span class="si">}</span>/*.gcda
+    WORKING_DIRECTORY <span class="si">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="si">}</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>CMakeLists.txt (make gcov):</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_custom_command</span><span class="p">(</span>TARGET gcov
+    COMMAND echo <span class="s2">"=================== GCOV ===================="</span>
+    COMMAND gcov -b <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/src/*.cpp -o <span class="si">${</span><span class="nv">OBJECT_DIR</span><span class="si">}</span>
+    COMMAND echo <span class="s2">"-- Source diretorie: </span><span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span><span class="s2">/src/"</span>
+    COMMAND echo <span class="s2">"-- Coverage files have been output to </span><span class="si">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="si">}</span><span class="s2">/gcoverage"</span>
+    WORKING_DIRECTORY <span class="si">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="si">}</span>/gcoverage
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>CMakeLists.txt (make lcov):</p>
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_custom_command</span><span class="p">(</span>TARGET lcov
+    COMMAND echo <span class="s2">"=================== LCOV ===================="</span>
+    COMMAND echo <span class="s2">"-- Passing lcov tool under code coverage"</span>
+    COMMAND lcov --capture --directory ../ --output-file lcoverage/main_coverage.info
+    COMMAND echo <span class="s2">"-- Generating HTML output files"</span>
+    COMMAND genhtml lcoverage/main_coverage.info --output-directory lcoverage
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>The results for the code coverage execution can be seen in the four images below, it was executed for four modules located in src and test/src projetc directories. In the first two images is possible to see the result for the test modules itself and the last two images are related to the project core, it means the main program. For reasons of quality, the module brave_coverage should be focused in the code coverage results.</p>
+
+<p><img src="/images/posts/00005-A.png" /></p>
+
+<p><img src="/images/posts/00005-D.png" /></p>
+
+<p><img src="/images/posts/00005-B.png" /></p>
+
+<p><img src="/images/posts/00005-C.png" /></p>
+
+<p>To study this test case, please go to the oficial <a href="https://github.com/dr-kino/BraveCoverage">git page</a> and clone/download it, follow the instructions to build the project. Maybe you will want to adapt it for your personal project, feel free to do that and have fun.</p>
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/2FlF-DtWegI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></center>
+
+  </div>
+</article>
+
+
+    <div style="clear: left;"></div>
+
+    
+      <hr />
+      <a rel="license" href="http://creativecommons.org/licenses/by/2.0/uk/">
+        <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.0/uk/88x31.png" />
+      </a>
+      <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">
+        Test Coverage Using Google Test, GCov and LCov
+      </span><br />
+
+      by
+      <a xmlns:cc="http://creativecommons.org/ns#" href="https://dr-kino.github.com/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/" property="cc:attributionName" rel="cc:attributionURL">
+      DoctorKino
+      </a>
+       is licensed under a
+      <a rel="license" href="http://creativecommons.org/licenses/by/2.0/uk/">
+      Creative Commons Attribution 2.0 UK: England & Wales License
+      </a>
+    
+
+    <hr style="clear:both;" />
+
+    
+      <h2>Related</h2>
+      <ul class="briefPosts">
+        
+          <li><a href="/2019/12/29/Setup-to-use-uncrustify-and-git/">Setting up uncrustify tool for git automation (C/C++ Languages)</a></li>
+        
+          <li><a href="/2019/11/04/base-project-to-use-gtest-and-gmock-in-unittest/">Base Project to Use GTest and GMock for Unit Tests</a></li>
+        
+      </ul>
+    
+
+    <hr />
+
+    <h2>Bookmark and Share</h2>
+    <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed"><img class="bookmarkIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
+    </a> Subscribe to RSS feed<br />
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="left:50px;top:50px;">
+      <a class="addthis_button_facebook"></a> &nbsp; Share on Facebook<br />
+      <br />
+      <a class="addthis_button_twitter"></a> &nbsp; Share on Twitter<br />
+      <br />
+      <a class="addthis_button_reddit"></a> &nbsp; Share on Reddit<br />
+      <br />
+      <a class="addthis_button_compact"></a> &nbsp; Share elsewhere<br />
+    </div>
+    <!-- AddThis Button END -->
+
+    <hr style="clear:both;" />
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'DoctorKino';
+      var disqus_identifier = '/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/';
+      var disqus_url = 'https://dr-kino.github.com/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+
+  <div class="col-md-4">
+
+    <h2>Latest Articles</h2>
+    <ul class="briefPosts">
+      
+        <li><a href="/2019/12/29/Setup-to-use-uncrustify-and-git/">Setting up uncrustify tool for git automation (C/C++ Languages)</a></li>
+      
+        <li><a href="/2019/12/27/Investigating-Car-Key-Control/">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></li>
+      
+        <li><a href="/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/">Test Coverage Using Google Test, GCov and LCov</a></li>
+      
+        <li><a href="/2019/11/04/base-project-to-use-gtest-and-gmock-in-unittest/">Base Project to Use GTest and GMock for Unit Tests</a></li>
+      
+        <li><a href="/2017/12/19/vhdl-two-logic-gates-analysis/">VHDL - Two Logic Gates Analysis</a></li>
+      
+    </ul>
+
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <strong>Legal:</strong> &nbsp;
+        <a href="/tandc/">Terms</a>
+
+        &nbsp; &nbsp;
+        <strong>RSS Feeds:</strong> &nbsp;
+        <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed">Full</a>,
+        <a href="http://feedproxy.google.com/DoctorKino-ReverseEngineeringPosts" title="Subscribe to DoctorKino's RSS Feed">ReverseEngineering</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+    <!-- Google Analytics tracking code -->
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-4388762-2");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

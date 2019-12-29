@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Investigating Car Key (RF Remote Control) With HackRF One - Part 1</title>
+
+  <title>Investigating Car Key (RF Remote Control) With HackRF One - Part 1</title>
+  <meta name="description" content="First of all, I would like to register that this post has no intention to teach how to break the laws, to ensure this I will omit the car model and suppress ...">
+
+  <meta name="keywords" content="Retro Vintage Programming Tinkering"/>
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/sitestyle.css" rel="stylesheet">
+  <link href="/css/html_pygments.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2019/12/27/Investigating-Car-Key-Control/">
+  <link rel="alternate" type="application/rss+xml" title="DR-KINO RSS Feed" href="http://feedproxy.google.com/DoctorKino" />
+
+  <!-- Fix for ie 5&6 where id doesnt render transparent images properly-->
+  <!--[if lte IE 6]>
+    <script defer type="text/javascript" src="/js/pngfix.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/js/html5shiv.3.7.2.min.js"></script>
+    <script src="/js/respond.1.4.2.min.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=vlifesystems"></script>
+
+  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script type="text/javascript">
+      window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"/tandc/#privacy","theme":"dark-bottom"};
+  </script>
+
+  <script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+  <!-- End Cookie Consent plugin -->
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">DR-KINO</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li
+        
+        ><a href="/">Home</a></li>
+
+        <li
+        
+        ><a href="/archive">Archive</a></li>
+
+        
+
+        
+
+        
+
+        
+
+        <li
+        
+        ><a href="/about">About</a></li>
+      </ul>
+
+      <a href="http://feedproxy.google.com/" title="Subscribe to Doctor Kino's RSS Feed">
+        <img class="bannerIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
+      </a>
+
+      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Youtube-Buttons-831.html -->
+      <a href="http://youtube.com/channel/UCcCZ8SFeAXsOfjU79PKy16A" title="Doctor Kino's YouTube Channel">
+        <img class="bannerIcon" src="/images/youtube-small-square-32.png" alt="YouTube Channel"/>
+      </a>
+
+      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Twitter-Buttons-1124.html -->
+      <a href="http://twitter.com/kino_dr" title="@kino_dr on Twitter">
+        <img class="bannerIcon" src="/images/twitter-button-36.png" alt="@kino_dr on Twitter"/>
+      </a>
+
+
+      <!-- From: http://www.graphicsfuel.com/2011/05/email-icon-psd/ -->
+      <a href="mailto:doctorkinoo@gmail.com" title="Email us, we'd love to hear from you">
+        <img class="bannerIcon" src="/images/email.png" alt="Email"/>
+      </a>
+
+      <a href="https://github.com/dr-kino/dr-kino.github.io" title="Doctor Kino On Github ">
+        <img class="bannerIcon" src="/images/octocat_fluid.png" alt="Doctor Kino Repo on  Github"/>
+      </a>
+
+    </div><!--/.nav-collapse -->
+  </div>
+
+</nav>
+
+
+    <div id="content" class="container">
+      <div class="row">
+  <div class="col-md-8">
+    <article itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="name"><a href="/2019/12/27/Investigating-Car-Key-Control/" title="Investigating Car Key (RF Remote Control) With HackRF One - Part 1">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></h1>
+    <span class="byLine">
+      by <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+           <a rel="author" itemprop="url" class="author" href="/profile/rafaelcavalcanti/">
+             <span itemprop="name">Rafael Cavalcanti</span>
+           </a>
+         </span>
+      <time itemprop="datePublished" datetime="2019-12-27">
+        27 December 2019
+      </time>
+    </span>
+
+
+    <!-- AddThis Button BEGIN -->
+    <div style="float: right;" class="addthis_toolbox addthis_default_style addthis_32x32_style">
+    <a class="addthis_button_google_plusone" g:plusone:count="false"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_reddit"></a>
+    <a class="addthis_button_compact"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=vlifesystems"></script>
+    <!-- AddThis Button END -->
+
+    <span class="tagLine">
+      <br />
+      Tags:
+      
+        <a rel="tag" href="/tag/reverseengineering">reverseengineering</a> &nbsp; &nbsp;
+      
+        <a rel="tag" href="/tag/security">security</a> &nbsp; &nbsp;
+      
+        <a rel="tag" href="/tag/rf">rf</a> &nbsp; &nbsp;
+      
+    </span>
+
+  </header>
+
+  <div class="articleBody" itemprop="articleBody">
+    <p>First of all, I would like to register that this post has no intention to teach how to break the laws, to ensure this I will omit the car model and suppress any other information that could open a window for malicius people. I want to mension that it is just a theme that should be developed for study and research purposes, I will write the next article as soon as relevant findings emerge. As I have no much time to be dedicated in this research, maybe it will take long time until next publication, because of this the current article will talsk a little bit about some tools devoted to Software Defined Radio, this way you can start your proper research related to SDR.</p>
+
+<p>To write this post I am using the <a href="https://greatscottgadgets.com/hackrf/one/">HackRF One</a> as a hadrware to interfaces with real world. The main characteristics of the HackRF hardware/project are:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 1 MHz to 6 GHz operating frequency
+* half-duplex transceiver
+* up to 20 million samples per second
+* 8-bit quadrature samples (8-bit I and 8-bit Q)
+* compatible with GNU Radio, SDR#, and more
+* software-configurable RX and TX gain and baseband filter
+* software-controlled antenna port power (50 mA at 3.3 V)
+* SMA female antenna connector
+* SMA female clock input and output for synchronization
+* convenient buttons for programming
+* internal pin headers for expansion
+* Hi-Speed USB 2.0
+* USB-powered
+* open source hardware
+</code></pre></div></div>
+
+<p>So, I will talk about the tools that helped me to do the first analysis. Are they: 
+    * Osmocom FFT: This tool helped me to identify the frequency of my target;
+    * Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
+    * Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.</p>
+
+<p>The next session will describe the work done so far.</p>
+
+<h2 id="osmocom-fft-tool">Osmocom FFT Tool</h2>
+
+<p>To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from remote control. To find this frequency I used the internet to research the most common RF signal characteristics, after tune the SDR in 433MHz was possibel to see the signal 1.8MHz (+) diverted from the center.</p>
+
+<p><img src="/images/posts/00006-A.png" /></p>
+
+<p>In the video below is possible to see the time behaviour of signal as well as the deviation from 433MHz frequency.</p>
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/cPqFquCdkTw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></center>
+
+<p>Next steps will be analyse the data, probably I will need to investigate hot to decoding the signal, before that of course I will try to open my car with replay attack. I believe it will not work because for this kind of system the minimum security mechanism used to be present.</p>
+
+<h2 id="inspectrum-tool">Inspectrum Tool</h2>
+
+<p>In two next image is possible to observe that the signal is using the <a href="https://en.wikipedia.org/wiki/Amplitude_modulation">Amplitude Modulation</a> ASK (short brief on wiki). Another thhing that could be noticed is related to the first part of the transmission, there are 14 square waveform cycles, it is used to synchonize transmitter and receiver targets.</p>
+
+<p><img src="/images/posts/00006-B.png" /></p>
+
+<p><img src="/images/posts/00006-C.png" /></p>
+
+<h2 id="gnu-radio-companion-tool">Gnu Radio Companion Tool</h2>
+
+<p>With <a href="https://www.gnuradio.org/">Gnu Radio Companion</a> you can setup a large number of configuration for your RF project, there are a lot of filters, gain modules, coding and decoding blocks, instrumentation like scope, FFT tool, histogram tool, etc. To start my experience with Gnu Radio and HackRF I used the easy example developed by [Ettus Research] (https://www.youtube.com/watch?v=KWeY2yqwVA0), it is a FM Radio. The result of my tests coul be seen in <a href="https://www.youtube.com/embed/8gAM07suhzY">youtube</a>.</p>
+
+<p><img src="/images/posts/00006-D.png" /></p>
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/8gAM07suhzY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></center>
+
+  </div>
+</article>
+
+
+    <div style="clear: left;"></div>
+
+    
+      <hr />
+      <a rel="license" href="http://creativecommons.org/licenses/by/2.0/uk/">
+        <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/2.0/uk/88x31.png" />
+      </a>
+      <span xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">
+        Investigating Car Key (RF Remote Control) With HackRF One - Part 1
+      </span><br />
+
+      by
+      <a xmlns:cc="http://creativecommons.org/ns#" href="https://dr-kino.github.com/2019/12/27/Investigating-Car-Key-Control/" property="cc:attributionName" rel="cc:attributionURL">
+      DoctorKino
+      </a>
+       is licensed under a
+      <a rel="license" href="http://creativecommons.org/licenses/by/2.0/uk/">
+      Creative Commons Attribution 2.0 UK: England & Wales License
+      </a>
+    
+
+    <hr style="clear:both;" />
+
+    
+      <h2>Related</h2>
+      <ul class="briefPosts">
+        
+          <li><a href="/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/">Reversing a BIOS Flash Via Hardware - First Steps</a></li>
+        
+      </ul>
+    
+
+    <hr />
+
+    <h2>Bookmark and Share</h2>
+    <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed"><img class="bookmarkIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
+    </a> Subscribe to RSS feed<br />
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="left:50px;top:50px;">
+      <a class="addthis_button_facebook"></a> &nbsp; Share on Facebook<br />
+      <br />
+      <a class="addthis_button_twitter"></a> &nbsp; Share on Twitter<br />
+      <br />
+      <a class="addthis_button_reddit"></a> &nbsp; Share on Reddit<br />
+      <br />
+      <a class="addthis_button_compact"></a> &nbsp; Share elsewhere<br />
+    </div>
+    <!-- AddThis Button END -->
+
+    <hr style="clear:both;" />
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'DoctorKino';
+      var disqus_identifier = '/2019/12/27/Investigating-Car-Key-Control/';
+      var disqus_url = 'https://dr-kino.github.com/2019/12/27/Investigating-Car-Key-Control/';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+
+  <div class="col-md-4">
+
+    <h2>Latest Articles</h2>
+    <ul class="briefPosts">
+      
+        <li><a href="/2019/12/29/Setup-to-use-uncrustify-and-git/">Setting up uncrustify tool for git automation (C/C++ Languages)</a></li>
+      
+        <li><a href="/2019/12/27/Investigating-Car-Key-Control/">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></li>
+      
+        <li><a href="/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/">Test Coverage Using Google Test, GCov and LCov</a></li>
+      
+        <li><a href="/2019/11/04/base-project-to-use-gtest-and-gmock-in-unittest/">Base Project to Use GTest and GMock for Unit Tests</a></li>
+      
+        <li><a href="/2017/12/19/vhdl-two-logic-gates-analysis/">VHDL - Two Logic Gates Analysis</a></li>
+      
+    </ul>
+
+  </div>
+</div>
+
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <strong>Legal:</strong> &nbsp;
+        <a href="/tandc/">Terms</a>
+
+        &nbsp; &nbsp;
+        <strong>RSS Feeds:</strong> &nbsp;
+        <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed">Full</a>,
+        <a href="http://feedproxy.google.com/DoctorKino-ReverseEngineeringPosts" title="Subscribe to DoctorKino's RSS Feed">ReverseEngineering</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+    <!-- Google Analytics tracking code -->
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-4388762-2");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
