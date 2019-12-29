@@ -8,3 +8,12 @@ If you would like to write an article for the site or make a correction, please 
 
 # Licence
 I need to clarify the licence situation for the code and images.  However, the situation for the posts is a little clearer, to find out the licence for each post look at the article on-line and at the bottom you will see what licence it is under.  The YAML header also gives a clue to this.
+
+# Build
+To build this projct, enter the commands bellow in the root folder:
+```console
+	$ jekyll build
+	$ jekyll sever
+```
+
+Then copy the content from gh-pages, generated in the same level of the root folder, to directorie dr-kino.github.io. The most important folder to link the references are generated in tag folder.
