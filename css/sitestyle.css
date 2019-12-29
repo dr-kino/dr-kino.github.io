@@ -21,7 +21,7 @@ body {
 }
 
 .navbar-default .navbar-brand {
-  color: #00C100;
+  color: #00CC00;
   font-family: monospace;
   font-size: 200%;
   font-weight: 700;
@@ -37,8 +37,8 @@ img.bannerIcon {
 }
 
 
-a { color: #00C100; text-decoration: none; }
-a:visited { color: #00C100; }
+a { color: #00CC00; text-decoration: none; }
+a:visited { color: #00CC00; }
 a:hover { text-decoration: underline; }
 
 li { line-height: 1.5; }
