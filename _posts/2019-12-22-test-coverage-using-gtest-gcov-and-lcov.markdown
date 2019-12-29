@@ -20,7 +20,7 @@ The tool chosen to execute code coverage is [Gcov](https://linux.die.net/man/1/g
 To demonstrates the usage of code coverage using [Google Test](https://github.com/google/googletest), [Gcov](https://linux.die.net/man/1/gcov) and [Lcov](https://linux.die.net/man/1/lcov) a simple example was done in C++ language, it's a simple class that add to integer values and the methods declaration can be seen afterward class, as you can see below. Please, considere that I am not concerned with a safety code, it was written just to demonstrante how to create a code coverage setup.
 
 Class declaration:
-{% highlight c++ %}
+```cpp
 class Sum
 {
 public:
@@ -35,10 +35,10 @@ private:
     int _A = 0;
     int _B = 0;
 };
-{% endhighlight %}
+```
 
 Methods definition:
-{% highlight c++ %}
+```cpp
 void Sum::setAValue(int A) {
     _A = A;
 }
@@ -50,12 +50,12 @@ void Sum::setBValue(int B) {
 int Sum::executeSum(void) {
     return _A + _B;
 }
-{% endhighlight %}
+```
 
 Regarding to the test case it is really simple, first an object is instantiated and the values are setted, afterwards the [Google Test](https://github.com/google/googletest) framework is called to compare if the sum operation was sucessfully executed, for this specific test case the operation is 10 + 10 = 20.
 
 Test case:
-{% highlight c++ %}
+```cpp
 TEST(BraveCoverage, TestCaseOne) {
     Sum SumUnderTest;
     SumUnderTest.setAValue(10);
@@ -63,13 +63,12 @@ TEST(BraveCoverage, TestCaseOne) {
 
     EXPECT_EQ(20, SumUnderTest.executeSum());
 }
-{% endhighlight %}
-
+```
 
 It is also possible to see the test case result.
 
 Test Results:
-```
+```console
 [==========] Running 1 test from 1 test case.
 [----------] Global test environment set-up.
 [----------] 1 test from BraveCoverage
@@ -82,7 +81,7 @@ Test Results:
 [  PASSED  ] 1 test.
 ```
 To build the project you need to execute the following commands inside the [test](https://github.com/dr-kino/BraveCoverage/tree/master/test) directory:
-```
+```console
 # mkdir build && cp build && cmake ..
 # make init
 # make gcov
@@ -96,17 +95,17 @@ The "make init" step executes the clean command and removes the files generated 
 Below you can see the CMakeFiles.txt snippets that references the commands described before.
 
 CMakeLists.txt (make init)
-{% highlight cmake %}
+```cmake
 add_custom_target(init
     COMMAND ${CMAKE_MAKE_PROGRAM} clean
     COMMAND rm -f ${OBJECT_DIR}/*.gcno
     COMMAND rm -f ${OBJECT_DIR}/*.gcda
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
-{% endhighlight %}
+```
 
 CMakeLists.txt (make gcov):
-{% highlight cmake %}
+```cmake
 add_custom_command(TARGET gcov
     COMMAND echo "=================== GCOV ===================="
     COMMAND gcov -b ${CMAKE_SOURCE_DIR}/src/*.cpp -o ${OBJECT_DIR}
@@ -114,10 +113,10 @@ add_custom_command(TARGET gcov
     COMMAND echo "-- Coverage files have been output to ${CMAKE_BINARY_DIR}/gcoverage"
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gcoverage
     )
-{% endhighlight %}
+```
 
 CMakeLists.txt (make lcov):
-{% highlight cmake %}
+```cmake
 add_custom_command(TARGET lcov
     COMMAND echo "=================== LCOV ===================="
     COMMAND echo "-- Passing lcov tool under code coverage"
@@ -125,7 +124,7 @@ add_custom_command(TARGET lcov
     COMMAND echo "-- Generating HTML output files"
     COMMAND genhtml lcoverage/main_coverage.info --output-directory lcoverage
     )
-{% endhighlight %}
+```
 
 The results for the code coverage execution can be seen in the four images below, it was executed for four modules located in src and test/src projetc directories. In the first two images is possible to see the result for the test modules itself and the last two images are related to the project core, it means the main program. For reasons of quality, the module brave_coverage should be focused in the code coverage results.
 
