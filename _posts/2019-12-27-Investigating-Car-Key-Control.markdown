@@ -39,7 +39,7 @@ So, I will talk about the tools that helped me to do the first analysis. Are the
 ```
 The next session will describe the work done so far.
 
-## Osmocom FFT Tool
+#### Osmocom FFT Tool
 
 To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from remote control. To find this frequency I used the internet to research the most common RF signal characteristics, after tune the SDR in 433MHz was possibel to see the signal 1.8MHz (+) diverted from the center.
 
@@ -51,13 +51,13 @@ In the video below is possible to see the time behaviour of signal as well as th
 
 Next steps will be analyse the data, probably I will need to investigate hot to decoding the signal, before that of course I will try to open my car with replay attack. I believe it will not work because for this kind of system the minimum security mechanism used to be present.
 
-## Inspectrum Tool
+#### Inspectrum Tool
 
 In two next image is possible to observe that the signal is using the [Amplitude Modulation](https://en.wikipedia.org/wiki/Amplitude_modulation) ASK (short brief on wiki). Another thhing that could be noticed is related to the first part of the transmission, there are 14 square waveform cycles, it is used to synchonize transmitter and receiver targets.
 
 <img src="/images/posts/00006-B.png" />
 
-## Gnu Radio Companion Tool
+#### Gnu Radio Companion Tool
 
 With [Gnu Radio Companion](https://www.gnuradio.org/) you can setup a large number of configuration for your RF project, there are a lot of filters, gain modules, coding and decoding blocks, instrumentation like scope, FFT tool, histogram tool, etc. To start my experience with Gnu Radio and HackRF I used the easy example developed by [Ettus Research] (https://www.youtube.com/watch?v=KWeY2yqwVA0), it is a FM Radio. The result of my tests coul be seen in [youtube](https://www.youtube.com/embed/8gAM07suhzY).
 
