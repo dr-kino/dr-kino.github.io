@@ -10,7 +10,7 @@
   <title>Setting up uncrustify tool for git automation (C/C++ Languages)</title>
 
   <title>Setting up uncrustify tool for git automation (C/C++ Languages)</title>
-  <meta name="description" content="Uncrustify is a tool used to fit a standard of codification, turning the code as a standardized code. It is very used in cases of large projects where is dif...">
+  <meta name="description" content="Uncrustify is a tool used to fit a standard for a program language aplying style according to the configuration file, it turns the code as a standardized cod...">
 
   <meta name="keywords" content="Retro Vintage Programming Tinkering"/>
 
@@ -18,7 +18,7 @@
   <link href="/css/sitestyle.css" rel="stylesheet">
   <link href="/css/html_pygments.css" rel="stylesheet">
 
-  <link rel="canonical" href="http://localhost:4000/2019/12/29/Setup-to-use-uncrustify-and-git/">
+  <link rel="canonical" href="/2019/12/29/Setup-to-use-uncrustify-and-git/">
   <link rel="alternate" type="application/rss+xml" title="DR-KINO RSS Feed" href="http://feedproxy.google.com/DoctorKino" />
 
   <!-- Fix for ie 5&6 where id doesnt render transparent images properly-->
@@ -150,7 +150,39 @@
   </header>
 
   <div class="articleBody" itemprop="articleBody">
-    <p>Uncrustify is a tool used to fit a standard of codification, turning the code as a standardized code. It is very used in cases of large projects where is difficult to disseminate a coding conventions or in case of each team member is used to use different IDE to program.</p>
+    <p><a href="https://github.com/uncrustify/uncrustify">Uncrustify</a> is a tool used to fit a standard for a program language aplying style according to the configuration file, it turns the code as a standardized code. This tool is very used in cases of large projects that is difficult to disseminate a coding conventions or in cases of each team member used to use different IDE to program. In this post I will describe two ways for use uncrustify integrated with version control tool - <a href="https://git-scm.com/">Git</a>, the first one example should be executed via script and the second one should be integrated to <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git Hook</a> mechanism.</p>
+
+<p>Note that I am providing a gneric configuration file style.cfg, but you can adapt it for your own necessity changing number of spaces, newlines, blanklines and identation, for instance. I am using Vim to devolop my software projects and I used to use it to edit that configuration file as a text editor, Visual Code has an interface to make the configuration job easier and to use that you need to install the appropriate plugin called Uncrutify, developed by Laurent Tréguier.</p>
+
+<h4 id="shell-script-using-git">Shell Script Using Git</h4>
+
+<p>The script below uses the command git status as the main step in the execution, after executed it will list all modified files. Then the command sed wil separete all lines, outputed from the git status, that contains the “modified” tag, after this step the command grep will search for all outputs that contains the folowing extensions: *.h, *.c, *.hpp and *.cpp. Finally this output will be passed for the uncrustify as one of inputs. This script should be applied/used in case that you want to see the formated code before you add it for the commit process.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status | sed <span class="nt">-n</span> <span class="s1">'/modified:/{s/^.*://;p}'</span> | <span class="nb">grep</span> <span class="s2">"</span><span class="se">\.</span><span class="s2">h</span><span class="nv">$\</span><span class="s2">|</span><span class="se">\.</span><span class="s2">c</span><span class="nv">$\</span><span class="s2">|</span><span class="se">\.</span><span class="s2">cpp</span><span class="nv">$\</span><span class="s2">|</span><span class="se">\.</span><span class="s2">hpp$"</span> | <span class="se">\</span>
+		xargs <span class="nt">-Inome</span> uncrustify <span class="nt">-c</span> style.cfg <span class="nt">--replace</span> nome
+</code></pre></div></div>
+
+<h4 id="git-hook-on-pre-commit">Git Hook on Pre-Commit</h4>
+<p>Now I will present for you the second way prepared to use the uncrustify, in this case you will used it embedded in hook mechanism provided by git. The hook mechanism is a serie of script that is called automatically during some git operations, in this study case I used “pre-commit”, ie it will be called always during the “git commit” command.</p>
+
+<p>The code below is part of “pre-commit” file, the entire code could be seen in the <a href="https://github.com/dr-kino/UncrustifyShip">repository</a> that contains this project. First of all, the scrip stores the configuration file path (style.cfg) and stores all files, with required extensions, included in current commit via “git add”. Then it there some file to be checked, the tool uncrustify will apply the standard in all files listed.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">UNCRUST_CONFIG</span><span class="o">=</span><span class="s2">"scripts/style.cfg"</span>
+<span class="c"># get list of staged files</span>
+<span class="nv">staged_files</span><span class="o">=</span><span class="k">$(</span>git diff <span class="nt">--name-only</span> <span class="nt">--staged</span> | <span class="nb">grep</span> <span class="nt">-i</span> <span class="nt">-E</span> <span class="nt">--</span> <span class="s1">'src'</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">'\.(c|h|cpp|hpp)$'</span><span class="k">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$staged_files</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"## Executing uncrustify"</span>
+    uncrustify <span class="nt">-c</span> <span class="nv">$UNCRUST_CONFIG</span> <span class="nv">$staged_files</span> <span class="nt">--replace</span> <span class="nt">--no-backup</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-ne</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">exit </span>1
+    <span class="k">fi
+    </span>git add <span class="nv">$staged_files</span>
+    <span class="nb">echo</span> <span class="s2">"## Style checked and changes commited"</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+<p>The full project could be verified in my github, it is named as <a href="https://github.com/dr-kino/UncrustifyShip">UncrustifyShip</a>. The next video shows how to use both mechanism decribed before, first I made some changes in the code changing its formatation then I called the git status to know if the file was staged, after that I ran the script sh_uncrustify to apply the standard in the code. The execution of the second script was automatically done through the git commit command, I mean it was executed via pre-commit script.</p>
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/DBQ7n28d7SM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></center>
+
+<p>I hope this post is useful for anyone who wants to start a project using coding standards in terms of style.</p>
 
   </div>
 </article>

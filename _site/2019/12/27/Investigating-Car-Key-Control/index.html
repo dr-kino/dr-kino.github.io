@@ -18,7 +18,7 @@
   <link href="/css/sitestyle.css" rel="stylesheet">
   <link href="/css/html_pygments.css" rel="stylesheet">
 
-  <link rel="canonical" href="http://localhost:4000/2019/12/27/Investigating-Car-Key-Control/">
+  <link rel="canonical" href="/2019/12/27/Investigating-Car-Key-Control/">
   <link rel="alternate" type="application/rss+xml" title="DR-KINO RSS Feed" href="http://feedproxy.google.com/DoctorKino" />
 
   <!-- Fix for ie 5&6 where id doesnt render transparent images properly-->
@@ -158,30 +158,29 @@
 
 <p>To write this post I am using the <a href="https://greatscottgadgets.com/hackrf/one/">HackRF One</a> as a hadrware to interfaces with real world. The main characteristics of the HackRF hardware/project are:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 1 MHz to 6 GHz operating frequency
-* half-duplex transceiver
-* up to 20 million samples per second
-* 8-bit quadrature samples (8-bit I and 8-bit Q)
-* compatible with GNU Radio, SDR#, and more
-* software-configurable RX and TX gain and baseband filter
-* software-controlled antenna port power (50 mA at 3.3 V)
-* SMA female antenna connector
-* SMA female clock input and output for synchronization
-* convenient buttons for programming
-* internal pin headers for expansion
-* Hi-Speed USB 2.0
-* USB-powered
-* open source hardware
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  * 1 MHz to 6 GHz operating frequency
+  * half-duplex transceiver
+  * up to 20 million samples per second
+  * 8-bit quadrature samples (8-bit I and 8-bit Q)
+  * compatible with GNU Radio, SDR#, and more
+  * software-configurable RX and TX gain and baseband filter
+  * software-controlled antenna port power (50 mA at 3.3 V)
+  * SMA female antenna connector
+  * SMA female clock input and output for synchronization
+  * convenient buttons for programming
+  * internal pin headers for expansion
+  * Hi-Speed USB 2.0
+  * USB-powered
+  * open source hardware
 </code></pre></div></div>
-
-<p>So, I will talk about the tools that helped me to do the first analysis. Are they: 
-    * Osmocom FFT: This tool helped me to identify the frequency of my target;
-    * Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
-    * Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.</p>
-
+<p>So, I will talk about the tools that helped me to do the first analysis. Are they:</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  * Osmocom FFT: This tool helped me to identify the frequency of my target;
+  * Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
+  * Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.
+</code></pre></div></div>
 <p>The next session will describe the work done so far.</p>
 
-<h2 id="osmocom-fft-tool">Osmocom FFT Tool</h2>
+<h4 id="osmocom-fft-tool">Osmocom FFT Tool</h4>
 
 <p>To identify the correct frequency of remote control I used a tool called osmocom_fft with -F as parameter, you can see below the interface and highlighted, in red color, is possible to see the signal from remote control. To find this frequency I used the internet to research the most common RF signal characteristics, after tune the SDR in 433MHz was possibel to see the signal 1.8MHz (+) diverted from the center.</p>
 
@@ -193,15 +192,13 @@
 
 <p>Next steps will be analyse the data, probably I will need to investigate hot to decoding the signal, before that of course I will try to open my car with replay attack. I believe it will not work because for this kind of system the minimum security mechanism used to be present.</p>
 
-<h2 id="inspectrum-tool">Inspectrum Tool</h2>
+<h4 id="inspectrum-tool">Inspectrum Tool</h4>
 
 <p>In two next image is possible to observe that the signal is using the <a href="https://en.wikipedia.org/wiki/Amplitude_modulation">Amplitude Modulation</a> ASK (short brief on wiki). Another thhing that could be noticed is related to the first part of the transmission, there are 14 square waveform cycles, it is used to synchonize transmitter and receiver targets.</p>
 
 <p><img src="/images/posts/00006-B.png" /></p>
 
-<p><img src="/images/posts/00006-C.png" /></p>
-
-<h2 id="gnu-radio-companion-tool">Gnu Radio Companion Tool</h2>
+<h4 id="gnu-radio-companion-tool">Gnu Radio Companion Tool</h4>
 
 <p>With <a href="https://www.gnuradio.org/">Gnu Radio Companion</a> you can setup a large number of configuration for your RF project, there are a lot of filters, gain modules, coding and decoding blocks, instrumentation like scope, FFT tool, histogram tool, etc. To start my experience with Gnu Radio and HackRF I used the easy example developed by [Ettus Research] (https://www.youtube.com/watch?v=KWeY2yqwVA0), it is a FM Radio. The result of my tests coul be seen in <a href="https://www.youtube.com/embed/8gAM07suhzY">youtube</a>.</p>
 

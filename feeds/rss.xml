@@ -4,7 +4,7 @@
     <title>DoctorKino</title>
     <link>https://dr-kino.github.io</link>
     <description>DoctorKino is blog about Programming, Embedded Systems, RF, Control, Digital Processing, Analog Processing, Security and Reverse Engineering</description>
-    <lastBuildDate>29 Dec 2019 15:13:46 WET</lastBuildDate>
+    <lastBuildDate>30 Dec 2019 19:40:23 WET</lastBuildDate>
     <language>en-gb</language>
 
     
@@ -13,8 +13,7 @@
         <link>https://dr-kino.github.io/2019/12/29/Setup-to-use-uncrustify-and-git/</link>
         <guid isPermaLink="true">https://dr-kino.github.io/2019/12/29/Setup-to-use-uncrustify-and-git/</guid>
         <pubDate>29 Dec 2019 00:00:01 WET</pubDate>
-        <description><![CDATA[Uncrustify is a tool used to fit a standard of codification, turning the code as a standardized code. It is very used in cases of large projects where is difficult to disseminate a coding conventions or in case of each team member is used to use different IDE to program.
-]]></description>
+        <description><![CDATA[Uncrustify is a tool used to fit a standard for a program language aplying style according to the configuration file, it turns the code as a standardized code. This tool is very used in cases of large projects that is difficult to disseminate a coding conventions or in cases of each team member u...]]></description>
       </item>
     
       <item>
@@ -48,11 +47,9 @@ It is related to a very small piece of code to demonstrate how to start a projec
         <link>https://dr-kino.github.io/2017/12/19/vhdl-two-logic-gates-analysis/</link>
         <guid isPermaLink="true">https://dr-kino.github.io/2017/12/19/vhdl-two-logic-gates-analysis/</guid>
         <pubDate>19 Dec 2017 00:00:01 WET</pubDate>
-        <description><![CDATA[Hello everyone!!!
+        <description><![CDATA[Firstly I would like to say that the following project is an initial example for who wishes start a work with VHDL, after read this example you will be able to simulate your first digital design in vhdl.
 
-Firstly I would like to say that the following project is an initial example for who wishes start a work with VHDL, after read this example you will be able to simulate your first digital design in vhdl.
-
-The circuit below represents two logical gates “AND” and “OR”, and their ...]]></description>
+The circuit below represents two logical gates “AND” and “OR”, and their corresponding input...]]></description>
       </item>
     
       <item>
@@ -60,9 +57,7 @@ The circuit below represents two logical gates “AND” and “OR”, and their
         <link>https://dr-kino.github.io/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/</link>
         <guid isPermaLink="true">https://dr-kino.github.io/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/</guid>
         <pubDate>24 Nov 2017 00:00:01 WET</pubDate>
-        <description><![CDATA[Hello everyone!!!
-
-This brief tutorial about dumping the BIOS (Basic Input/Output System) content directly via hardware (Programmer MiniPro TL866), will pass to you the procedure executed to get BIOS binary code. Other articles of this blog will cover binary contents analysis and some modificatio...]]></description>
+        <description><![CDATA[This brief tutorial about dumping the BIOS (Basic Input/Output System) content directly via hardware (Programmer MiniPro TL866), will pass to you the procedure executed to get BIOS binary code. Other articles of this blog will cover binary contents analysis and some modifications based on its dis...]]></description>
       </item>
     
   </channel>
