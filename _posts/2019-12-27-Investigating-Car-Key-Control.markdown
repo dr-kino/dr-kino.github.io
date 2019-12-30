@@ -15,26 +15,28 @@ First of all, I would like to register that this post has no intention to teach 
 
 To write this post I am using the [HackRF One](https://greatscottgadgets.com/hackrf/one/) as a hadrware to interfaces with real world. The main characteristics of the HackRF hardware/project are:
 
-    * 1 MHz to 6 GHz operating frequency
-    * half-duplex transceiver
-    * up to 20 million samples per second
-    * 8-bit quadrature samples (8-bit I and 8-bit Q)
-    * compatible with GNU Radio, SDR#, and more
-    * software-configurable RX and TX gain and baseband filter
-    * software-controlled antenna port power (50 mA at 3.3 V)
-    * SMA female antenna connector
-    * SMA female clock input and output for synchronization
-    * convenient buttons for programming
-    * internal pin headers for expansion
-    * Hi-Speed USB 2.0
-    * USB-powered
-    * open source hardware
-
-So, I will talk about the tools that helped me to do the first analysis. Are they: 
-    * Osmocom FFT: This tool helped me to identify the frequency of my target;
-    * Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
-    * Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.
-
+```text
+  * 1 MHz to 6 GHz operating frequency
+  * half-duplex transceiver
+  * up to 20 million samples per second
+  * 8-bit quadrature samples (8-bit I and 8-bit Q)
+  * compatible with GNU Radio, SDR#, and more
+  * software-configurable RX and TX gain and baseband filter
+  * software-controlled antenna port power (50 mA at 3.3 V)
+  * SMA female antenna connector
+  * SMA female clock input and output for synchronization
+  * convenient buttons for programming
+  * internal pin headers for expansion
+  * Hi-Speed USB 2.0
+  * USB-powered
+  * open source hardware
+```
+So, I will talk about the tools that helped me to do the first analysis. Are they:
+```text
+  * Osmocom FFT: This tool helped me to identify the frequency of my target;
+  * Inspectrum: With this tool was possible to investigate the characteristics of signal, this task is in progress. And the last but not least;
+  * Gnu Radio Companion: With this tool will be possible to write some script to log the data for future analysis, for while I just ran it to setup my study setup.
+```
 The next session will describe the work done so far.
 
 ## Osmocom FFT Tool
@@ -54,8 +56,6 @@ Next steps will be analyse the data, probably I will need to investigate hot to 
 In two next image is possible to observe that the signal is using the [Amplitude Modulation](https://en.wikipedia.org/wiki/Amplitude_modulation) ASK (short brief on wiki). Another thhing that could be noticed is related to the first part of the transmission, there are 14 square waveform cycles, it is used to synchonize transmitter and receiver targets.
 
 <img src="/images/posts/00006-B.png" />
-
-<img src="/images/posts/00006-C.png" />
 
 ## Gnu Radio Companion Tool
 

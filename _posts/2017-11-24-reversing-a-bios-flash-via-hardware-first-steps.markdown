@@ -9,7 +9,6 @@ author:
   url: /profile/rafaelcavalcanti/
 licence: cc_attrib
 ---
-Hello everyone!!!
 
 This brief tutorial about dumping the BIOS (Basic Input/Output System) content directly via hardware (Programmer MiniPro TL866), will pass to you the procedure executed to get BIOS binary code. Other articles of this blog will cover binary contents analysis and some modifications based on its disassambly.
 
