@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Setting up uncrustify tool for git automation (C/C++ Languages)
+title: Setting up Uncrustify Tool for Git Automation (C/C++ Languages)
 tags:
   - softwaredevelopment
 author:

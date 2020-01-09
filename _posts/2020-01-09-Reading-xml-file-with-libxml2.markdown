@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Reading XML files in C++ (libxml2)
+title: Reading XML Files in C++ (libxml2)
 tags:
   - softwaredevelopment
 author:
