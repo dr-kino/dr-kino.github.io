@@ -53,7 +53,7 @@ menuOption: home
       <a href="/tag/rf#item5">More RF Articles</a>
     </div>
 
-    <h2>Control</h2>
+    <h2>Control Systems</h2>
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
@@ -89,7 +89,7 @@ menuOption: home
     <ul class="briefPosts">
       {% assign numFound = 0 %}
       {% for post in site.posts %}
-        {% if post.tags contains "analogelectronics" %}
+        {% if post.tags contains "analogelectronic" %}
           {% assign numFound = numFound | plus: 1 %}
           {% if numFound <= 5 %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
