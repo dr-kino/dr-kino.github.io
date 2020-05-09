@@ -12,7 +12,6 @@ I need to clarify the licence situation for the code and images.  However, the s
 # Build
 To build this projct, enter the commands bellow in the root folder:
 ```console
-	$ jekyll init
 	$ jekyll build
 	$ jekyll sever
 ```
