@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Communication wireless using 3DR Telemetry Radio 
+title: Tasks creation in Hercules LauchPad
 tags:
   - rf
   - embeddedsystems
