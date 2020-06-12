@@ -13,7 +13,7 @@ I need to clarify the licence situation for the code and images.  However, the s
 To build this projct, enter the commands bellow in the root folder:
 ```console
 	$ jekyll build
-	$ jekyll sever
+	$ jekyll server
 ```
 Then access the page via the following address: http://127.0.0.1:4000
 
