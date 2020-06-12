@@ -2,9 +2,7 @@
 layout: article
 title: Tasks creation in Hercules LauchPad
 tags:
-  - rf
   - embeddedsystems
-  - control
 author:
   name: Rafael Cavalcanti
   url: /profile/rafaelcavalcanti/
