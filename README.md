@@ -17,4 +17,4 @@ To build this projct, enter the commands bellow in the root folder:
 ```
 Then access the page via the following address: http://127.0.0.1:4000
 
-Then copy the content from gh-pages, generated in the same level of the root folder, to directorie dr-kino.github.io. The most important folder to link the references are generated in tag folder.
+Then copy the content from gh-pages, generated in the same level of the root folder, to directorie dr-kino.github.io. The most important folder to link the references are generated in tag folder. IMPORTANT: Before enter the command ```console $ jekyll build ``` is important to exclude the content of tag folder.
