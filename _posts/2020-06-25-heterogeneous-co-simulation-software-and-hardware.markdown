@@ -16,18 +16,32 @@ I will go straigth on this subject but before the practice I will answer quicly 
 
 Here I will present a simulation environment focused in embedded systems that it architecture uses C and VHDL languages, it can be composed by microcontrollers and FPGA for instance, and  this kind of mechanism (co-simulation) is very usefull to spped up the development, tests and integration.
 
+### Application
+
+### Project Description
+
 <div style="text-align:center"><img src="/images/posts/00014-A.png" /></div>
+
+### Buffer
 
 <div style="text-align:center"><img src="/images/posts/00014-B.png" /></div>
 
 <div style="text-align:center"><img src="/images/posts/00014-C.png" /></div>
 
+### Hardware (UUT - Unit Under Test)
+
 <div style="text-align:center"><img src="/images/posts/00014-D.png" /></div>
 
 <div style="text-align:center"><img src="/images/posts/00014-E.png" /></div>
+
+### Software
 
 <div style="text-align:center"><img src="/images/posts/00014-F.png" /></div>
 
 <div style="text-align:center"><img src="/images/posts/00014-G.png" /></div>
 
 <div style="text-align:center"><img src="/images/posts/00014-H.png" /></div>
+
+### Build and Project Usage
+
+### Conclusion
