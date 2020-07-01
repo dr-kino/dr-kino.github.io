@@ -18,11 +18,15 @@ Here I will present a simulation environment focused in embedded systems that it
 
 ### Application
 
-To simulate a electronic system composed by different tecnologies and different abstraction level, digital systems that its architecture has microcontrollers/microprocessor and FPGA for instance, a simulation environment can be a good strategy for isolated components or a integrated system. In a simulation that more than one digital component is simulated, one advantage will be minimize extra development of external components to behave as peripheral components like mocks, stubs, fakes, etc. In a simulated scenario is possible to validate the systems functions.
+To simulate a electronic system composed by different tecnologies and different abstraction level, digital systems that its architecture has microcontrollers/microprocessor and FPGA for instance, a simulation environment can be a good strategy for isolated components or a integrated system. In a simulation that more than one digital component is simulated, one advantage will be minimize extra development of external components to behave as peripheral components like mocks, stubs, fakes, etc. In a simulated scenario is possible to validate the systems functions also.
 
+Of course I don't want to catechize everyone here saying that simulated environment wil solve all of your problems, but it will minimize the integration impact according it is implemented as soon as possible. Another point that i want to clarify, this test mechanism should not replace the traditional software development flow.. it is an alternative to integrate hardware and software.
 
+The most complicated thing in a co-simulated environment is the architecture definition regarding the interfaces between the hardware components, it will be composed by software and can obey or not the original communication protocol. For the analog components is needed several samples to represent it, but this part is not the focus of this post, here will be presented only one possible approach to digital components.
 
 ### Project Description
+
+To exemplify the application of co-simulated techinique a 8-Bit Adder will be designed, the hardware (FPGA) is responsible to add two values and the software (microcontroller for instance) is responsible to get the values and pass it to the FPGA. After finish the mathematic operation, the FPGA will retrive the value. All information exchanged between hardware and software is done through buffer files. Bellow, the simplified architecture:
 
 <div style="text-align:center"><img src="/images/posts/00014-A.png" /></div>
 
