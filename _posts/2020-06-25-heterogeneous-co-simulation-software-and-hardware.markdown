@@ -18,6 +18,10 @@ Here I will present a simulation environment focused in embedded systems that it
 
 ### Application
 
+To simulate a electronic system composed by different tecnologies and different abstraction level, digital systems that its architecture has microcontrollers/microprocessor and FPGA for instance, a simulation environment can be a good strategy for isolated components or a integrated system. In a simulation that more than one digital component is simulated, one advantage will be minimize extra development of external components to behave as peripheral components like mocks, stubs, fakes, etc. In a simulated scenario is possible to validate the systems functions.
+
+
+
 ### Project Description
 
 <div style="text-align:center"><img src="/images/posts/00014-A.png" /></div>
