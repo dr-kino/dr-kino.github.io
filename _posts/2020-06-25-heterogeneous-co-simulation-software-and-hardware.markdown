@@ -26,7 +26,7 @@ The most complicated thing in a co-simulated environment is the architecture def
 
 ### Project Description
 
-To exemplify the application of co-simulated techinique a 8-Bit Adder will be designed, the hardware (FPGA) is responsible to add two values and the software (microcontroller for instance) is responsible to get the values and pass it to the FPGA. After finish the mathematic operation, the FPGA will retrive the value. All information exchanged between hardware and software is done through buffer files. Bellow, the simplified architecture:
+To exemplify the application of co-simulated techinique a 8-Bit Adder will be designed, the hardware (FPGA) is responsible to add two values and the software (microcontroller for instance) is responsible to get the values and pass it to the FPGA. After finish the mathematic operation, the FPGA will retrive the value. All information exchanged between hardware and software is done through buffer files. Bellow, the simplified architecture: 
 
 <div style="text-align:center"><img src="/images/posts/00014-A.png" /></div>
 
