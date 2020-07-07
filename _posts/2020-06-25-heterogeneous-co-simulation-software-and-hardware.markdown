@@ -26,9 +26,13 @@ The most complicated thing in a co-simulated environment is the architecture def
 
 ### Project Description
 
-To exemplify the application of co-simulated techinique a 8-Bit Adder will be designed, the hardware (FPGA) is responsible to add two values and the software (microcontroller for instance) is responsible to get the values and pass it to the FPGA. After finish the mathematic operation, the FPGA will retrive the value. All information exchanged between hardware and software is done through buffer files. Bellow, the simplified architecture: 
+To exemplify the application of co-simulated techinique a 8-Bit Adder will be designed, the hardware (FPGA) is responsible to add two values and the software (microcontroller for instance) is responsible to get the values and pass it to the FPGA. After finish the mathematic operation, the FPGA will retrive the value. All information exchanged between hardware and software is done through buffer files. Bellow, the simplified architecture:
 
 <div style="text-align:center"><img src="/images/posts/00014-A.png" /></div>
+
+This project is composed by two binary executable files and two files for communication buffer purpose. The binaries are: 1) Generated from a program writen in C language, that has the user interface and; 2) Generated from the simulated hardware, described in VHDL, through the ISim Simulation -Xilinx and it is composed by a 8-bit adder. The buffers are: 1) For writes from the software and reads from the hardware side and; 2) For writes from the hardware and reads from the software.
+
+The information are exchanged by both binaries files is done via a type of file called named pipe or FIFO (First In First Out).
 
 ### Buffer
 
