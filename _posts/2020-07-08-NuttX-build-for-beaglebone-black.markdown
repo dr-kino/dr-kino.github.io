@@ -52,6 +52,7 @@ $ ls -l nuttx.bin
 At this point the compilation is done and the nuttx.bin was generated in the root folder. Copy this file to the microSD card, in root directory, before it don't forget to format the microSD card as FAT32.
 
 The J1 connector in BBB is configured as:
+
 * PIN 1: GND
 * PIN 2: NC (Not Connected)
 * PIN 3: NC (Not Connected)
