@@ -36,7 +36,23 @@ The information are exchanged by both binaries files is done via a type of file 
 
 ### Buffer
 
+The buffer files will be used here to exchange some information between software and hardware, like a communication channel, as mentioned before. These files are generated automatically in this project after the build through the run.sh script, inside this script the command mkfifo is executed to create the buffers. Bellow, we can see the output for the command ls.
+
 <div style="text-align:center"><img src="/images/posts/00014-B.png" /></div>
+
+#### Console 1
+
+```console
+$ mkfifo test
+$ date > test
+```
+
+#### Console 2
+
+```console
+$ cat < test
+$ cat < test 
+```
 
 <div style="text-align:center"><img src="/images/posts/00014-C.png" /></div>
 
