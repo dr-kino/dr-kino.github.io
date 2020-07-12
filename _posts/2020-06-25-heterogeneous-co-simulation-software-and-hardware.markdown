@@ -40,6 +40,8 @@ The buffer files will be used here to exchange some information between software
 
 <div style="text-align:center"><img src="/images/posts/00014-B.png" /></div>
 
+As mainly feature of this files is the behavour to release the memory automatically when a read operation is done. This feature is very useful and a simple test with these files is described below:
+
 #### Console 1
 
 ```console
