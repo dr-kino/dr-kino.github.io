@@ -22,8 +22,6 @@ Air Module: Serial-USB Adapter
 
 <div style="text-align:center"><img src="/images/posts/00010-A.png" width="500" height="400" /></div>
 
-<div style="text-align:center"><img src="/images/posts/00010-B.png" /></div>
-
 <div style="text-align:center"><img src="/images/posts/00010-C.png" width="300" height="200" /></div>
 
 After complete the connection between the Air Module and the Serial-USB Adapter, you can choose any software to open the serial communication in your computer. In my case I am using the Minicom that is a text-based serial port communication program.
@@ -31,7 +29,23 @@ After complete the connection between the Air Module and the Serial-USB Adapter,
 You can find the telemetry radio entering the following command:
 
 ```console
-dmesg | grep tty
+sudo dmesg | grep tty
 ```
 
+Then you can see the USB-to-Serial adapter, in my case it was mapped in ttyUSB0 and ttyUSB1, and you can enter the following command to open the first connection:
+
+```console
+sudo minicom -D /dev/tty/USB0 -b 57600
+```
+
+And open another prompt command and type:
+
+```console
+sudo minicom -D /dev/tty/USB' -b 57600
+```
+
+After this point you can type any key in one of the terminal and you will see the key in the other terminal. It is important to say that Minicom uses as default configuration: 8-Bit Data, no parity and 1 stop-bit.
+
 <div style="text-align:center"><img src="/images/posts/00010-D.png" /></div>
+
+So, have fun!
