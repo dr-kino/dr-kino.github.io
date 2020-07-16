@@ -14,7 +14,7 @@ To follow this tutorial (Linux), besides the Beaglebone Black (BBB),  you will n
 
 ### Setting up the Development Environment to Nuttx
 
-```console
+```c
 $ sudo apt-get install automake bison build-essential flex gcc-arm-none-eabi gperf git libncurses5-dev libtool libusb-dev libusb-1.0.0-dev pkg-config
 $ mkdir ~/nuttxspace
 $ cd ~/nuttxspace
@@ -28,7 +28,7 @@ $ sudo make install
 
 ### Compiling the NuttX Source Code
 
-```console
+```c
 $ cd ..
 $ git clone https://bitbucket.org/nuttx/nuttx
 $ git clone https://bitbucket.org/nuttx/apps
@@ -78,7 +78,7 @@ After this step you will need to power on the BBB and you will see the U-Boot st
 
 Now you will need to type the following commands to start the application:
 
-```console
+```c
 load mmc 0 0x8a000000 nuttx.bin
 go 0x8a000000
 ```
