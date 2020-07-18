@@ -34,5 +34,5 @@ set(gca, "linewidth", 4, "fontsize", 18);
 
 <div style="text-align:center"><img src="/images/posts/00015-A.png" width="600" height="400" /></div>
 
-
+ 
 ### The Step Response
