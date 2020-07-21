@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Beaglebone Black - Soldering Jtag - Connector 
+title: Beaglebone Black - Soldering Jtag Connector 
 tags:
   - hardware
 author:
