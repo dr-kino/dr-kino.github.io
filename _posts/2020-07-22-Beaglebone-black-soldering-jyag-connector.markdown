@@ -13,3 +13,8 @@ The mostly goal in this article is to show how to soldering a JTAG connector in 
 
 <div style="text-align:center"><img src="/images/posts/00017-A.png" width="600" height="400" /></div>
 
+<div style="text-align:center"><img src="/images/posts/00017-B.png" width="600" height="400" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00017-D.png" width="400" height="400" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00017-E.png" width="400" height="400" /></div>
