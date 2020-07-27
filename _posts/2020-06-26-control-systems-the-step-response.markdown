@@ -34,5 +34,12 @@ set(gca,"linewidth", 4,"fontsize", 18);
 
 <div style="text-align:center"><img src="/images/posts/00015-A.png" width="600" height="400" /></div>
 
+<div style="text-align:center"><img src="/images/posts/00015-E.png" width="600" height="400" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00015-B.png" width="600" height="400" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00015-C.png" width="600" height="400" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00015-D.png" width="600" height="400" /></div>
 
 ### The Step Response
