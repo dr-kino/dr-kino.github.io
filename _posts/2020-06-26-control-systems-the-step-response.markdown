@@ -38,15 +38,15 @@ In general, for a closed-loop system, to design a system we need to take care ab
   * What is the time to achieve the final amplitude desired (Rise Time)?
   * Is there overshoot?
   * What is the time to achieve the response stability?
-  * What is the difference betwen the system amplitude and the amplitude desired?
+  * What is the difference betwen the system amplitude and the amplitude desired (Tracked Reference)?
 
 <div style="text-align:center"><img src="/images/posts/00015-E.png" width="600" height="400" /></div>
 
 ### Step Response For Different Systems
 
-Is versy important to say that each system has a peculiar response when submi
+Is very important to note that each system has a peculiar response when a step response is applied, below you can see the response for some systems.
 
-##### Low Pass Filter (First Order)
+#### Low Pass Filter (First Order)
 ```c
 clear all;
 clf;
@@ -57,7 +57,7 @@ plot(t, squeeze(y), 'LineWidth',4);
 ```
 <div style="text-align:center"><img src="/images/posts/00015-B.png" width="600" height="400" /></div>
 
-##### Type 1 Transfer Function
+#### Type 1 Transfer Function
 ```c
 clear all;
 clf;
@@ -68,7 +68,7 @@ plot(t, squeeze(y), 'LineWidth',4);
 ```
 <div style="text-align:center"><img src="/images/posts/00015-C.png" width="600" height="400" /></div>
 
-##### High Pass Filter
+#### High Pass Filter
 ```c
 clear all;
 clf;
