@@ -44,11 +44,37 @@ In general, for a closed-loop system, to design a system we need to take care ab
 
 ### Step Response For Different Systems
 
-#### Low Pass Filter (First Order)
+Is versy important to say that each system has a peculiar response when submi
+
+##### Low Pass Filter (First Order)
+```c
+clear all;
+clf;
+s = tf('s');
+g = 1/(s+1); # Low pass filter
+[y,t] = step(g);
+plot(t, squeeze(y), 'LineWidth',4);
+```
 <div style="text-align:center"><img src="/images/posts/00015-B.png" width="600" height="400" /></div>
 
-#### Type 1 Transfer Function
+##### Type 1 Transfer Function
+```c
+clear all;
+clf;
+s = tf('s');
+g = 1/s*(s+1); # Type 1 transfer function
+[y,t] = step(g);
+plot(t, squeeze(y), 'LineWidth',4);
+```
 <div style="text-align:center"><img src="/images/posts/00015-C.png" width="600" height="400" /></div>
 
-#### High Pass Filter
+##### High Pass Filter
+```c
+clear all;
+clf;
+s = tf('s');
+g = s/(s+1); # High pass filter
+[y,t] = step(g);
+plot(t, squeeze(y), 'LineWidth',4);
+```
 <div style="text-align:center"><img src="/images/posts/00015-D.png" width="600" height="400" /></div>
