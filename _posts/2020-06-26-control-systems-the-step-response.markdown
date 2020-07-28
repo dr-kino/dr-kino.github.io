@@ -34,12 +34,21 @@ set(gca,"linewidth", 4,"fontsize", 18);
 
 <div style="text-align:center"><img src="/images/posts/00015-A.png" width="600" height="400" /></div>
 
+In general, for a closed-loop system, to design a system we need to take care about four main parameters that could be aswered over the following questions:
+  * What is the time to achieve the final amplitude desired (Rise Time)?
+  * Is there overshoot?
+  * What is the time to achieve the response stability?
+  * What is the difference betwen the system amplitude and the amplitude desired?
+
 <div style="text-align:center"><img src="/images/posts/00015-E.png" width="600" height="400" /></div>
 
+### Step Response For Different Systems
+
+#### Low Pass Filter (First Order)
 <div style="text-align:center"><img src="/images/posts/00015-B.png" width="600" height="400" /></div>
 
+#### Type 1 Transfer Function
 <div style="text-align:center"><img src="/images/posts/00015-C.png" width="600" height="400" /></div>
 
+#### High Pass Filter
 <div style="text-align:center"><img src="/images/posts/00015-D.png" width="600" height="400" /></div>
-
-### The Step Response
