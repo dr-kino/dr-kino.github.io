@@ -12,16 +12,46 @@ licence: cc_attrib
 The following program is an example of insecure implementation that enable the user to inject shell commands during its execution. It uses the system() function that executes commands into the host environment through the command processor and it returns after the command has
 been completed.
 
-### System Function Declaration
-
+#### System Function Declaration
 ```c
 int system(const char *command)
 ```
 
-### Parameters
-
+#### Parameters
 * command -  C string containing the name of the requested variable.
 
-### Return Value
-
+#### Return Value
 * The value returned is -1 on error, and the return status of the command otherwise.
+
+### Vulnerable Program
+
+```c
+#include <string.h>
+#include <stdio.h>
+
+int systemInfo(char *userName, char *systemInfo){
+        char userNameBuf[50];
+        char systemInfoBuf[50];
+
+        printf("userName buffer address:    %x\n", userNameBuf);
+        printf("systemInfo buffer address: %x\n", systemInfoBuf);
+
+        strcpy(userNameBuf, userName);
+        strcpy(systemInfoBuf, systemInfo);
+
+        printf("User Name: %s!\n", userNameBuf);
+        printf("System Info: %s\n", systemInfoBuf);
+
+        fflush(stdout);
+        system(systemInfoBuf);
+}
+
+main(){
+        char userName[200];
+
+        printf("Please, insert your user name:\n");
+        scanf("%s", userName);
+
+        systemInfo(userName, "uname -a");
+}
+```
