@@ -67,7 +67,7 @@ The option -g passed to gcc means that the compiler will generate debug informat
 In Unix OS, the executable file (ELF) has in its header a field called PT_GNU_STACK that indicates whether an executable stack is needed. As mentioned before, by default gcc will mark the stack as non-executable. Lets see the example below:
 
 Flag: execstack
-<div style="text-align:center"><img src="/images/posts/00018-A.png" width="500" height="400" /></div>
+<div style="text-align:center"><img src="/images/posts/00018-A.png" width="800" height="600" /></div>
 
 Flag: noexecstack
-<div style="text-align:center"><img src="/images/posts/00018-B.png" width="500" height="400" /></div>
+<div style="text-align:center"><img src="/images/posts/00018-B.png" width="800" height="600" /></div>
