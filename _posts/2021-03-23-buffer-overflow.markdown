@@ -2,6 +2,7 @@
 layout: article
 title: Buffer Overflow Through Vulnerable Program (Linux OS)
 tags:
+  - reverseengineering
   - security
 author:
   name: Rafael Cavalcanti
@@ -29,7 +30,7 @@ int system(const char *command)
 #include <string.h>
 #include <stdio.h>
 
-int systemInfo(char *userName, char *systemInfo){
+int systemInfo(char *userName, char *systemInfo) {
         char userNameBuf[50];
         char systemInfoBuf[50];
 
@@ -46,7 +47,7 @@ int systemInfo(char *userName, char *systemInfo){
         system(systemInfoBuf);
 }
 
-main(){
+main() {
         char userName[200];
 
         printf("Please, insert your user name:\n");
@@ -55,3 +56,10 @@ main(){
         systemInfo(userName, "uname -a");
 }
 ```
+
+Save the code in a file and compile the program using the gcc command below:
+```c
+gcc -g -fno-stack-protector -z execstack <file-name.c> -o <file-name>
+```
+
+The option -g passed to gcc means that the compiler will generate debug information to be used by GDB debugger, the -fno-stack-protector disables the stack protection check and -z option
