@@ -74,4 +74,16 @@ Flag: noexecstack
 
 ### Running the Program
 
-Executing the program via ./file-name, in my case ./bufOverflow, we have in the console:
+Executing the program via ./file-name, in my case ./bufOverflow, we have this result in the console:
+
+<div style="text-align:center"><img src="/images/posts/00018-C.png" width="800" height="600" /></div>
+
+Note that the addresses always change for each execution, it happens because the linux kernel randomize the base address of the stack. This is a point that is not really important in this example because, but just to test this mechanism we can execute the following command:
+
+```c
+# echo 0 > /proc/sys/kernel/randomize_va_space
+```
+
+The execution result after change the randomize_va_space parameter:
+
+<div style="text-align:center"><img src="/images/posts/00018-D.png" width="800" height="600" /></div>
