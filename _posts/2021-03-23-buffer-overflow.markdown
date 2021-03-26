@@ -87,3 +87,12 @@ Note that the addresses always change for each execution, it happens because the
 The execution result after change the randomize_va_space parameter:
 
 <div style="text-align:center"><img src="/images/posts/00018-D.png" width="800" height="600" /></div>
+
+Now lets investigate deeper how is possible to insert malicious command in such kind of program. To do that we will use the gdb debugger to analyse the program flow and the stack.
+
+<div style="text-align:center"><img src="/images/posts/00018-E.png" width="800" height="600" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00018-F.png" width="800" height="600" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00018-G.png" width="800" height="600" /></div>
+
