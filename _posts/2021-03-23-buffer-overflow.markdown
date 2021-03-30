@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Buffer Overflow Through Vulnerable Program (Unix OS) - {In Progress..}
+title: Buffer Overflow Through Vulnerable Program (Unix OS)
 tags:
   - reverseengineering
   - security
@@ -24,7 +24,7 @@ Parameters:
 Return Value:
 * The value returned is -1 on error, and the return status of the command otherwise.
 
-### Vulnerable Program Compilation
+### Program Compilation
 
 ```c
 #include <string.h>
@@ -90,13 +90,25 @@ The execution result after change the randomize_va_space parameter:
 
 Now lets investigate deeper how is possible to insert malicious command in such kind of program. To do that we will use the gdb debugger to analyse the program flow and the stack.
 
-Lets execute the gdb passing using the command ```c $ gdb -q ./bufferOverflow ```, then list the existing functions generated as symbols from compilation output. After this point, we will insert a break point at line 18 and we will continue running the program til it asks us to insert the username parameter. Lets enter 40 bytes/characters as following: 0000000011111111222222223333333344444444. Then we can proceed with the execution and see both buffers addresses, the user name one and system information.
+Lets execute the gdb passing using the command ```$ gdb -q ./bufferOverflow```, then list the existing functions generated as symbols from compilation output. After this point, we will insert a break point at line 18 and we will continue running the program til it asks us to insert the username parameter. Lets enter 40 bytes/characters as following: 0000000011111111222222223333333344444444. Then we can proceed with the execution and see both buffers addresses, the user name one and system information.
 
 Now the program execution stops at line 18, as we commanded previously through the break point insertion.
 
 <div style="text-align:center"><img src="/images/posts/00018-E.png" width="800" height="600" /></div>
 
+To analyse the register, we are going to execute the ```info list``` command in gdb, now we can see the base address of the stack pointer.
+
 <div style="text-align:center"><img src="/images/posts/00018-F.png" width="800" height="600" /></div>
+
+Executing the command ```x/80x $rsp``` we will 80 addresses of the stack. Note, highlighted in red, the userName variable and in yellow the systemInfo variable.
 
 <div style="text-align:center"><img src="/images/posts/00018-G.png" width="800" height="600" /></div>
 
+Now lets execute the program and enter the string bellow, then we will be able to see the ```ls -la``` command being executed.
+
+```c
+000000001111111122222222333333334444444455555555ls$IFS-la
+```
+ Then the command above will execute the command mentioned before.
+
+ The problem on this program is happens because the input string is not handled in terms of size, if a simple test in the input size is done, then it can protect the stack against this kind of problem.
