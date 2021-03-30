@@ -90,6 +90,10 @@ The execution result after change the randomize_va_space parameter:
 
 Now lets investigate deeper how is possible to insert malicious command in such kind of program. To do that we will use the gdb debugger to analyse the program flow and the stack.
 
+Lets execute the gdb passing using the command ```c $ gdb -q ./bufferOverflow ```, then list the existing functions generated as symbols from compilation output. After this point, we will insert a break point at line 18 and we will continue running the program til it asks us to insert the username parameter. Lets enter 40 bytes/characters as following: 0000000011111111222222223333333344444444. Then we can proceed with the execution and see both buffers addresses, the user name one and system information.
+
+Now the program execution stops at line 18, as we commanded previously through the break point insertion.
+
 <div style="text-align:center"><img src="/images/posts/00018-E.png" width="800" height="600" /></div>
 
 <div style="text-align:center"><img src="/images/posts/00018-F.png" width="800" height="600" /></div>
