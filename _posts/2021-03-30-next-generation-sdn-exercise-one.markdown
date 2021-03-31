@@ -38,18 +38,17 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 ### Parser
 
 * List all the protocol headers that can be extracted from a packet.
-    <span style="color:blue">
-    ethernet
-    ipv4
-    ipv6
-    srv6h
-    srv6_list
-    tcp
-    udp
-    icmp
-    icmpv6
-    ndp
-    </span>
+    <span style="color:blue">ethernet</span>
+    <span style="color:blue">ipv4</span>
+    <span style="color:blue">ipv6</span>
+    <span style="color:blue">srv6h</span>
+    <span style="color:blue">srv6_list</span>
+    <span style="color:blue">tcp</span>
+    <span style="color:blue">udp</span>
+    <span style="color:blue">icmp</span>
+    <span style="color:blue">icmpv6</span>
+    <span style="color:blue">ndp</span>
+    
 
 * Which header is expected to be the first one when parsing a new packet
     The first one will be the ethernet header, in the parser implementation it is in the "start" state
