@@ -31,6 +31,7 @@ In the rest of the exercises, you will be asked to build a leaf-spine data cente
 * Checksum verification/update
 
     <div style="text-align:center"><img src="/images/posts/00019-E.png" /></div>
+
     <div style="text-align:center"><img src="/images/posts/00019-D.png" /></div>
 
 The implementation already provides logic for L2 bridging and ACL behaviors. We suggest you start by taking a quick look at the whole program to understand its structure. When you're done, try answering the following questions, while referring to the P4 program to understand the different parts in more details.
@@ -38,16 +39,16 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 ### Parser
 
 * List all the protocol headers that can be extracted from a packet.
-    <span style="color:blue">ethernet</span>
-    <span style="color:blue">ipv4</span>
-    <span style="color:blue">ipv6</span>
-    <span style="color:blue">srv6h</span>
-    <span style="color:blue">srv6_list</span>
-    <span style="color:blue">tcp</span>
-    <span style="color:blue">udp</span>
-    <span style="color:blue">icmp</span>
-    <span style="color:blue">icmpv6</span>
-    <span style="color:blue">ndp</span>
+    * <span style="color:blue">ethernet</span>
+    * <span style="color:blue">ipv4</span>
+    * <span style="color:blue">ipv6</span>
+    * <span style="color:blue">srv6h</span>
+    * <span style="color:blue">srv6_list</span>
+    * <span style="color:blue">tcp</span>
+    * <span style="color:blue">udp</span>
+    * <span style="color:blue">icmp</span>
+    * <span style="color:blue">icmpv6</span>
+    * <span style="color:blue">ndp</span>
     
 
 * Which header is expected to be the first one when parsing a new packet
