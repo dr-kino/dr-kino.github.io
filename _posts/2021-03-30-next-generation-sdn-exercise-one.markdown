@@ -49,31 +49,32 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 ### Parser
 
 * List all the protocol headers that can be extracted from a packet.
-    * <span style="color:blue">ethernet</span>
-    * <span style="color:blue">ipv4</span>
-    * <span style="color:blue">ipv6</span>
-    * <span style="color:blue">srv6h</span>
-    * <span style="color:blue">srv6_list</span>
-    * <span style="color:blue">tcp</span>
-    * <span style="color:blue">udp</span>
-    * <span style="color:blue">icmp</span>
-    * <span style="color:blue">icmpv6</span>
-    * <span style="color:blue">ndp</span>
+    * <span style="color:cyan">ethernet</span>
+    * <span style="color:cyan">ipv4</span>
+    * <span style="color:cyan">ipv6</span>
+    * <span style="color:cyan">srv6h</span>
+    * <span style="color:cyan">srv6_list</span>
+    * <span style="color:cyan">tcp</span>
+    * <span style="color:cyan">udp</span>
+    * <span style="color:cyan">icmp</span>
+    * <span style="color:cyan">icmpv6</span>
+    * <span style="color:cyan">ndp</span>
     
 
 * Which header is expected to be the first one when parsing a new packet
-    * <span style="color:blue">The first one will be the ethernet header, in the parser implementation it is in the "start" state.</span>
+    * <span style="color:cyan">The first one will be the ethernet header, in the parser implementation it is in the "start" state.</span>
 
 ### Ingress pipeline
 
 * For the L2 bridging case, which table is used to replicate NDP requests to all host-facing ports? What type of match is used in that table?
-    * <span style="color:blue">The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match.</span>
+    * <span style="color:cyan">The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match.</span>
 
 * In the ACL table, what's the difference between send_to_cpu and clone_to_cpu actions?
     * <span style="color:red">TBD</span>
 
 * In the apply block, what is the first table applied to a packet? Are P4Runtime packet-out treated differently?
-    * <span style="color:blue">The first table applied is the l2_exact_table. Yes, first it need to validated.</span>
+    * <span style="color:cyan">The first table applied is the l2_exact_table. Yes, first it need to validated.</span>
+
 ### Egress pipeline
 
 * For multicast packets, can they be replicated to the ingress port?
