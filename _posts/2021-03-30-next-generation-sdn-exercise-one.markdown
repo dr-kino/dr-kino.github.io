@@ -27,7 +27,17 @@ In the rest of the exercises, you will be asked to build a leaf-spine data cente
     <div style="text-align:center"><img src="/images/posts/00019-A.png" /></div>
 
 * Parser implementation
+
+    <div style="text-align:center"><img src="/images/posts/00019-F.png" /></div>
+    <div style="text-align:center">There are more states in the parser implementation, see the code.</div>
+
 * Ingress and egress pipeline implementation (incomplete)
+
+    <div style="text-align:center"><img src="/images/posts/00019-G.png" /></div>
+
+    <div style="text-align:center"><img src="/images/posts/00019-H.png" /></div>
+    <div style="text-align:center">See the ingress and the egress pipeline implementation for more details.</div>
+
 * Checksum verification/update
 
     <div style="text-align:center"><img src="/images/posts/00019-E.png" /></div>
