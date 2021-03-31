@@ -23,11 +23,11 @@ To get started, let's have a look a the P4 program: [p4src/main.p4](https://gith
 In the rest of the exercises, you will be asked to build a leaf-spine data center fabric based on IPv6. To make things easier, we provide a starter P4 program which contains:
 
 * Header definitions
-<img src="/images/posts/00019-A.png" />
 
-<img src="/images/posts/00019-B.png" />
+    <div style="text-align:center"><img src="/images/posts/00019-A.png" /></div>
+    <div style="text-align:center"><img src="/images/posts/00019-B.png" /></div>
+    <div style="text-align:center"><img src="/images/posts/00019-C.png" /></div>
 
-<img src="/images/posts/00019-C.png" />
 * Parser implementation
 * Ingress and egress pipeline implementation (incomplete)
 * Checksum verification/update
