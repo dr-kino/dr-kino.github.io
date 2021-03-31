@@ -12,10 +12,11 @@ licence: cc_attrib
 
 This post brings more details about the execution of [P4Runtime Basics Tutorial](https://github.com/opennetworkinglab/ngsdn-tutorial/blob/advanced/EXERCISE-1.md) that is part of the Next Generation SDN Tutorial.
 
-    1. Look at the P4 starter code
-    2. Compile it for the BMv2 software switch and understand the output (P4Info and BMv2 JSON files)
-    3. Start Mininet with a 2x2 topology of stratum_bmv2 switches
-    4. Use the P4Runtime Shell to manually insert table entries in one of the switches to provide connectivity between hosts
+1. Look at the P4 starter code
+2. Compile it for the BMv2 software switch and understand the output (P4Info and BMv2 JSON files)
+3. Start Mininet with a 2x2 topology of stratum_bmv2 switches
+4. Use the P4Runtime Shell to manually insert table entries in one of the switches to provide connectivity between hosts
+
 ## 1. Look at the P4 program
 To get started, let's have a look a the P4 program: p4src/main.p4
 
