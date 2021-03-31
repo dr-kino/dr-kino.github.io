@@ -77,12 +77,15 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
     * <span style="color:red">TBD</span>
 
 * In the apply block, what is the first table applied to a packet? Are P4Runtime packet-out treated differently?
-    * <span style="color:cyan">The first table applied is the l2_exact_table. Yes, first it need to validated.</span>
+    * <span style="color:cyan">The first table applied is the l2_exact_table. Yes, first it need to be validated.</span>
 
 ### Egress pipeline
 
 * For multicast packets, can they be replicated to the ingress port?
+    * <span style="color:cyan">No, it cannot be replicated and if it is multicast packet the it is droped. See below:</span>
+    <div style="text-align:center"><img src="/images/posts/00019-I.png" /></div>
 
 ### Deparser
 
 * What is the first header to be serialized on the wire and in which case?
+    * <span style="color:cyan">The first header is the cpu_in_header and there is no condition for that, it will always happen.</span>
