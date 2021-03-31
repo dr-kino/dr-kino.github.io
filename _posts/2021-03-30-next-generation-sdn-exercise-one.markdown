@@ -71,7 +71,7 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 ### Ingress pipeline
 
 * For the L2 bridging case, which table is used to replicate NDP requests to all host-facing ports? What type of match is used in that table?
-    * <span style="color:cyan">The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match.</span>
+    * <span style="color:cyan">The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match is used.</span>
 
 * In the ACL table, what's the difference between send_to_cpu and clone_to_cpu actions?
     * <span style="color:red">TBD</span>
@@ -82,10 +82,10 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 ### Egress pipeline
 
 * For multicast packets, can they be replicated to the ingress port?
-    * <span style="color:cyan">No, it cannot be replicated and if it is multicast packet the it is droped. See below:</span>
+    * <span style="color:cyan">No, it cannot be replicated and if it is a multicast packet then it is droped. See below:</span>
     <div style="text-align:center"><img src="/images/posts/00019-I.png" /></div>
 
 ### Deparser
 
 * What is the first header to be serialized on the wire and in which case?
-    * <span style="color:cyan">The first header is the cpu_in_header and there is no condition for that, it will always happen.</span>
+    * <span style="color:cyan">The first header is the cpu_in_header and there is no condition for that, it will happen always.</span>
