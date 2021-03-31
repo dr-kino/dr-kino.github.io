@@ -26,10 +26,12 @@ In the rest of the exercises, you will be asked to build a leaf-spine data cente
 
     <div style="text-align:center"><img src="/images/posts/00019-A.png" /></div>
 
+
 * Parser implementation
 
     <div style="text-align:center"><img src="/images/posts/00019-F.png" /></div>
     <div style="text-align:center">There are more states in the parser implementation, see the code.</div>
+
 
 * Ingress and egress pipeline implementation (incomplete)
 
@@ -37,6 +39,7 @@ In the rest of the exercises, you will be asked to build a leaf-spine data cente
 
     <div style="text-align:center"><img src="/images/posts/00019-H.png" /></div>
     <div style="text-align:center">See the ingress and the egress pipeline implementation for more details.</div>
+
 
 * Checksum verification/update
 
@@ -63,6 +66,7 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 
 * Which header is expected to be the first one when parsing a new packet
     * <span style="color:cyan">The first one will be the ethernet header, in the parser implementation it is in the "start" state.</span>
+
 
 ### Ingress pipeline
 
