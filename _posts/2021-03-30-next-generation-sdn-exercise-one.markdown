@@ -62,17 +62,18 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
     
 
 * Which header is expected to be the first one when parsing a new packet
-    The first one will be the ethernet header, in the parser implementation it is in the "start" state
+    * <span style="color:blue">The first one will be the ethernet header, in the parser implementation it is in the "start" state.</span>
 
 ### Ingress pipeline
 
 * For the L2 bridging case, which table is used to replicate NDP requests to all host-facing ports? What type of match is used in that table?
-    The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match.
+    * <span style="color:blue">The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match.</span>
 
 * In the ACL table, what's the difference between send_to_cpu and clone_to_cpu actions?
+    * <span style="color:red">TBD</span>
 
 * In the apply block, what is the first table applied to a packet? Are P4Runtime packet-out treated differently?
-    The first table applied is the l2_exact_table. Yes, first it need to validated.
+    * <span style="color:blue">The first table applied is the l2_exact_table. Yes, first it need to validated.</span>
 ### Egress pipeline
 
 * For multicast packets, can they be replicated to the ingress port?
