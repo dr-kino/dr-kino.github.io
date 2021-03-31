@@ -25,30 +25,48 @@ In the rest of the exercises, you will be asked to build a leaf-spine data cente
 * Header definitions
 
     <div style="text-align:center"><img src="/images/posts/00019-A.png" /></div>
-    <div style="text-align:center"><img src="/images/posts/00019-B.png" /></div>
-    <div style="text-align:center"><img src="/images/posts/00019-C.png" /></div>
 
 * Parser implementation
 * Ingress and egress pipeline implementation (incomplete)
 * Checksum verification/update
 
+    <div style="text-align:center"><img src="/images/posts/00019-E.png" /></div>
+    <div style="text-align:center"><img src="/images/posts/00019-D.png" /></div>
+
 The implementation already provides logic for L2 bridging and ACL behaviors. We suggest you start by taking a quick look at the whole program to understand its structure. When you're done, try answering the following questions, while referring to the P4 program to understand the different parts in more details.
 
 ### Parser
 
-List all the protocol headers that can be extracted from a packet.
-Which header is expected to be the first one when parsing a new packet
+* List all the protocol headers that can be extracted from a packet.
+    <span style="color:blue">
+    ethernet
+    ipv4
+    ipv6
+    srv6h
+    srv6_list
+    tcp
+    udp
+    icmp
+    icmpv6
+    ndp
+    </span>
+
+* Which header is expected to be the first one when parsing a new packet
+    The first one will be the ethernet header, in the parser implementation it is in the "start" state
 
 ### Ingress pipeline
 
-For the L2 bridging case, which table is used to replicate NDP requests to all host-facing ports? What type of match is used in that table?
-In the ACL table, what's the difference between send_to_cpu and clone_to_cpu actions?
-In the apply block, what is the first table applied to a packet? Are P4Runtime packet-out treated differently?
+* For the L2 bridging case, which table is used to replicate NDP requests to all host-facing ports? What type of match is used in that table?
+    The l2_ternary_table is used to replicate NDP requests to all host-facing ports, to do that the ternary match.
 
+* In the ACL table, what's the difference between send_to_cpu and clone_to_cpu actions?
+
+* In the apply block, what is the first table applied to a packet? Are P4Runtime packet-out treated differently?
+    The first table applied is the l2_exact_table. Yes, first it need to validated.
 ### Egress pipeline
 
-For multicast packets, can they be replicated to the ingress port?
+* For multicast packets, can they be replicated to the ingress port?
 
 ### Deparser
 
-What is the first header to be serialized on the wire and in which case?
+* What is the first header to be serialized on the wire and in which case?
