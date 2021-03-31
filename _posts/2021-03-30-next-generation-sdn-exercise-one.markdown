@@ -10,7 +10,7 @@ author:
 licence: cc_attrib
 ---
 
-This post brings more details about the execution of [P4Runtime Basics Tutorial](https://github.com/opennetworkinglab/ngsdn-tutorial/blob/advanced/EXERCISE-1.md) that is part of the Next Generation SDN Tutorial.
+This post brings more details about the execution of [P4Runtime Basics Tutorial](https://github.com/opennetworkinglab/ngsdn-tutorial/blob/advanced/EXERCISE-1.md) that is part of the Next Generation SDN Tutorial. This post will cover the following topics:
 
 1. Look at the P4 starter code
 2. Compile it for the BMv2 software switch and understand the output (P4Info and BMv2 JSON files)
