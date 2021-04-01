@@ -89,3 +89,66 @@ The implementation already provides logic for L2 bridging and ACL behaviors. We 
 
 * What is the first header to be serialized on the wire and in which case?
     * <span style="color:cyan">The first header is the cpu_in_header and there is no condition for that, it will happen always.</span>
+
+## 2. Compile P4 program
+
+The next step is to compile the P4 program for the BMv2 `simple_switch` target. For this, we will use the open source P4_16 compiler ([p4c](https://github.com/p4lang/p4c)) which includes a backend for this specific target, named `p4c-bm2-ss`.
+
+To compile the program, open a terminal window in the exercise VM and type the following command:
+
+```c
+make p4-build
+```
+
+You should see the following output:
+
+```c
+*** Building P4 program...
+docker run --rm -v /home/sdn/ngsdn-tutorial:/workdir -w /workdir
+ opennetworking/p4c:stable \
+                p4c-bm2-ss --arch v1model -o p4src/build/bmv2.json \
+                --p4runtime-files p4src/build/p4info.txt --Wdisable=unsupported \
+                p4src/main.p4
+*** P4 program compiled successfully! Output files are in p4src/build
+```
+
+<div style="text-align:center"><img src="/images/posts/00019-J.png" /></div>
+
+We have instrumented the [Makefile](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/Makefile) to use a containerized version of the `p4c-bm2-ss` compiler. If you look at the arguments when calling `p4c-bm2-ss`, you will notice that we are asking the compiler to:
+
+* Compile for the v1model architecture (`--arch` argument);
+* Put the main output in `p4src/build/bmv2.json` (`-o`);
+* Generate a P4Info file in p4src/build/p4info.txt (`--p4runtime-files`);
+* Ignore some warnings about unsupported features (`--Wdisable=unsupported`). It's ok to ignore such warnings here, as they are generated because of a bug in p4c.
+
+### Compiler output
+
+[bmv2.json](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/solvings/exercise-1/bmv2.json)
+
+This file defines a configuration for the BMv2 `simple_switch` target in JSON format. When `simple_switch` receives a new packet, it uses this configuration to process the packet in a way that is consistent with the P4 program.
+
+This is quite a big file, but don't worry, there's no need to understand its content for the sake of this exercise. If you want to learn more, a specification of the BMv2 JSON format is provided here: https://github.com/p4lang/behavioral-model/blob/master/docs/JSON_format.md
+
+[p4info.txt](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/solvings/exercise-1/p4info.txt)
+
+This file contains an instance of a P4Info schema for our P4 program, expressed using the Protobuf Text format.
+
+Take a look at this file and try to answer the following questions:
+
+1. What is the fully qualified name of the l2_exact_table? What is its numeric ID?
+* <span style="color:cyan">`IngressPipeImpl.l2_exact_table`</span>
+
+2. To which P4 entity does the ID 16812802 belong to? A table, an action, or something else? What is the corresponding fully qualified name?
+* <span style="color:cyan">It belongs to the `egress_port` entity and it is associated to an action. Its fully qualified name is `IngressPipeImpl.set_egress_port`.</span>
+
+3. For the IngressPipeImpl.set_egress_port action, how many parameters are defined for this action? What is the bitwidth of the parameter named port_num?
+* <span style="color:cyan">Only one parameter is defined for this action and its bitwidth is 9.</span>
+
+<div style="text-align:center"><img src="/images/posts/00019-L.png" /></div>
+
+4. At the end of the file, look for the definition of the controller_packet_metadata message with name packet_out at the end of the file. Now look at the definition of header cpu_out_header_t in the P4 program. Do you see any relationship between the two?
+* <span style="color:cyan">Yes, the controller_packet_metadata  has two metadatas as the same way we can see in the definition of the header cpu_out_header_t. See the following images:</span>
+
+<div style="text-align:center"><img src="/images/posts/00019-M.png" /></div>
+
+<div style="text-align:center"><img src="/images/posts/00019-N.png" /></div>
