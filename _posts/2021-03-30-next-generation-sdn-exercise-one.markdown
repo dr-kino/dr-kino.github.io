@@ -303,16 +303,16 @@ To be able to forward ping packets, we need to add two table entries on `l2_exac
 Let's use the P4Runtime shell to create and insert such entries. Looking at the P4Info file, use the commands below to insert the following two entries in the `l2_exact_table`:
 
 | Match (Ethernet dest)	| Egress port number |
-| :-------------------: | :----------------: |
-| `00:00:00:00:00:1B`   | 4                  |
-| `00:00:00:00:00:1A`   | 3                  |
+| --------------------- | ------------------ |
+|  `00:00:00:00:00:1B`  |         4          |
+|  `00:00:00:00:00:1A`  |         3          |
 
 To create a table entry object:
 
 ```c
 P4Runtime sh >>> te = table_entry["P4INFO-TABLE-NAME"](action = "<P4INFO-ACTION-NAME>")
 ```
-<span style="color:cyan">P4Runtime sh >>> te = table_entry["IngressPipeImpl.l2_exact_table"](action = "IngressPipeImpl.set_egress_port")</span>
+* <span style="color:cyan">P4Runtime sh >>> te = table_entry["IngressPipeImpl.l2_exact_table"]\(action = "IngressPipeImpl.set_egress_port"\)</span>
 
 Make sure to use the fully qualified name for each entity, e.g. `IngressPipeImpl.l2_exact_table`, `IngressPipeImpl.set_egress_port`, etc.
 
@@ -321,8 +321,8 @@ To specify a match field:
 ```c
 P4Runtime sh >>> te.match["P4INFO-MATCH-FIELD-NAME"] = ("VALUE")
 ```
-<span style="color:cyan">te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1B")</span>
-<span style="color:cyan">te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1A")</span>
+* <span style="color:cyan">te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1B")</span>
+* <span style="color:cyan">te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1A")</span>
 
 `VALUE` can be a MAC address expressed in Colon-Hexadecimal notation (e.g., `00:11:22:AA:BB:CC`), or IP address in dot notation, or an arbitrary string. Based on the information contained in the P4Info, P4Runtime shell will internally convert that value to a Protobuf byte string.
 
@@ -331,8 +331,8 @@ The specify the values for the table entry action parameters:
 ```c
 P4Runtime sh >>> te.action["P4INFO-ACTION-PARAM-NAME"] = ("VALUE")
 ```
-<span style="color:cyan">te.action["port_num"] = ("4")</span>
-<span style="color:cyan">te.action["port_num"] = ("3")</span>
+* <span style="color:cyan">te.action["port_num"] = ("4")</span>
+* <span style="color:cyan">te.action["port_num"] = ("3")</span>
 
 You can show the table entry object in Protobuf Text format, using the print command:
 
