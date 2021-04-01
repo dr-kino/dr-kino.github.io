@@ -302,10 +302,10 @@ To be able to forward ping packets, we need to add two table entries on `l2_exac
 
 Let's use the P4Runtime shell to create and insert such entries. Looking at the P4Info file, use the commands below to insert the following two entries in the `l2_exact_table`:
 
-\||.Match (Ethernet dest) \|| Egress port number \||
-\|| ..................... \|| .................. \||
-\|| .`00:00:00:00:00:1B`. \|| ........4......... \||
-\|| .`00:00:00:00:00:1A`. \|| ........3......... \||
+\|.Match (Ethernet dest).\|.Egress port number\|
+\|.......................\|...................\|
+\|..`00:00:00:00:00:1B`..\|.........4.........\|
+\|..`00:00:00:00:00:1A`..\|.........3.........\|
 
 To create a table entry object:
 
