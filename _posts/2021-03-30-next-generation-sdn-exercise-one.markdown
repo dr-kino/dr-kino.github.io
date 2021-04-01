@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Next Generation SDN - P4Runtime Basics {In Progress}
+title: Next Generation SDN - P4Runtime Basics
 tags:
   - computernetwork
   - security
@@ -312,6 +312,7 @@ To create a table entry object:
 ```c
 P4Runtime sh >>> te = table_entry["P4INFO-TABLE-NAME"](action = "<P4INFO-ACTION-NAME>")
 ```
+<span style="color:cyan">P4Runtime sh >>> te = table_entry["IngressPipeImpl.l2_exact_table"](action = "IngressPipeImpl.set_egress_port")</span>
 
 Make sure to use the fully qualified name for each entity, e.g. `IngressPipeImpl.l2_exact_table`, `IngressPipeImpl.set_egress_port`, etc.
 
@@ -320,6 +321,8 @@ To specify a match field:
 ```c
 P4Runtime sh >>> te.match["P4INFO-MATCH-FIELD-NAME"] = ("VALUE")
 ```
+<span style="color:cyan">te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1B")</span>
+<span style="color:cyan">te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1A")</span>
 
 `VALUE` can be a MAC address expressed in Colon-Hexadecimal notation (e.g., `00:11:22:AA:BB:CC`), or IP address in dot notation, or an arbitrary string. Based on the information contained in the P4Info, P4Runtime shell will internally convert that value to a Protobuf byte string.
 
@@ -328,6 +331,8 @@ The specify the values for the table entry action parameters:
 ```c
 P4Runtime sh >>> te.action["P4INFO-ACTION-PARAM-NAME"] = ("VALUE")
 ```
+<span style="color:cyan">te.action["port_num"] = ("4")</span>
+<span style="color:cyan">te.action["port_num"] = ("3")</span>
 
 You can show the table entry object in Protobuf Text format, using the print command:
 
@@ -364,3 +369,17 @@ PING 2001:1:1::b(2001:1:1::b) 56 data bytes
 <div style="text-align:center"><img src="/images/posts/gif/00019-C.gif" /></div>
 
 <div style="text-align:center"><img src="/images/posts/gif/00019-D.gif" /></div>
+
+Command sequence:
+
+```c
+P4Runtime sh >>> te = table_entry["IngressPipeImpl.l2_exact_table"](action = "IngressPipeImpl.set_egress_port")
+P4Runtime sh >>> te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1B")
+P4Runtime sh >>> te.action["port_num"] = ("4")
+P4Runtime sh >>> print(te)
+P4Runtime sh >>> te.insert()
+P4Runtime sh >>> te.match["hdr.ethernet.dst_addr"] = ("00:00:00:00:00:1A")
+P4Runtime sh >>> te.action["port_num"] = ("3")
+P4Runtime sh >>> print(te)
+P4Runtime sh >>> te.insert()
+```
