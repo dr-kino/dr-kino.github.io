@@ -383,3 +383,9 @@ P4Runtime sh >>> te.action["port_num"] = ("3")
 P4Runtime sh >>> print(te)
 P4Runtime sh >>> te.insert()
 ```
+
+### Extras
+
+Bridging the packets of ```h1b``` to any other port.
+
+<div style="text-align:center"><img src="/images/posts/gif/00019-E.gif" /></div>
