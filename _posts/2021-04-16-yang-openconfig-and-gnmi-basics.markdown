@@ -32,14 +32,14 @@ structure of the model.
 
 Start by entering the yang-tools Docker container:
 
-```
+```c
 $ make yang-tools
 bash-4.4#
 ```
 
 Next, run `pyang` on the `demo-port.yang` model:
 
-```
+```c
 bash-4.4# pyang -f tree demo-port.yang
 ```
 
@@ -60,7 +60,7 @@ set of OpenConfig models that Stratum uses.
 These models have already been loaded into the `yang-tools` container in the
 `/models` directory.
 
-```
+```c
 bash-4.4# pyang -f tree \
     -p ietf \
     -p openconfig \
@@ -102,7 +102,7 @@ has it's own schema format.
 First, we can look at YANG's first and canonical representation format XML. To
 see a empty skeleton of data encoded in XML, run:
 
-```
+```c
 bash-4.4# pyang -f sample-xml-skeleton demo-port.yang
 ```
 
@@ -110,7 +110,7 @@ This skeleton should match the tree representation we saw in part 1.
 
 We can also use `pyang` to generate a DSDL schema based on the YANG model:
 
-```
+```c
 bash-4.4# pyang -f dsdl demo-port.yang | xmllint --format -
 ```
 
@@ -129,7 +129,7 @@ be automatically generated for dozens of languages. We can use
 [`ygot`](https://github.com/openconfig/ygot)'s `proto_generator` to generate
 protobuf messages from our YANG model.
 
-```
+```c
 bash-4.4# proto_generator -output_dir=/proto -package_name=tutorial demo-port.yang
 ```
 
@@ -139,7 +139,7 @@ bash-4.4# proto_generator -output_dir=/proto -package_name=tutorial demo-port.ya
 
 Open `demo_port.proto` using `less`:
 
-```
+```c
 bash-4.4# less /proto/tutorial/demo_port/demo_port.proto
 ```
 
@@ -152,7 +152,7 @@ included in this file, but `proto_generator` puts them in a separate file:
 
 Open `enums.proto` using `less`:
 
-```
+```c
 bash-4.4# less /proto/tutorial/enums/enums.proto
 ```
 
@@ -163,7 +163,7 @@ added if you completed the extra credit above.
 We can also use `proto_generator` to build the protobuf messages for the
 OpenConfig models that Stratum uses:
 
-```
+```c
 bash-4.4# proto_generator \
     -generate_fakeroot \
     -output_dir=/proto \
@@ -210,7 +210,7 @@ and that are capable of validating the structure, type, and values of data.
 *Extra Credit:* If you have extra time or are interested in using YANG and Go
 together, try generating Go code for the `demo-port` module.
 
-```
+```c
 bash-4.4# mkdir -p /goSrc
 bash-4.4# generator -output_dir=/goSrc -package_name=tutorial demo-port.yang
 ```
@@ -230,7 +230,7 @@ This part focuses on using the protobuf encoding over gNMI.
 
 First, make sure your Mininet container is still running.
 
-```
+```c
 $ make start
 docker-compose up -d
 mininet is up-to-date
@@ -239,7 +239,7 @@ onos is up-to-date
 
 If you see the following output, then Mininet was not running:
 
-```
+```c
 Starting mininet ... done
 Starting onos    ... done
 ```
@@ -266,12 +266,12 @@ Next, we will use a [gNMI client CLI](https://github.com/Yi-Tseng/Yi-s-gNMI-tool
 to read the all of the configuration from the Stratum switche `leaf1` in our
 Mininet network:
 
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 get /
 ```
 
 The first part of the output shows the request that was made by the CLI:
-```
+```c
 REQUEST
 path {
 }
@@ -284,7 +284,7 @@ tree), the type of data is just the config tree, and the requested encoding for
 the response is protobuf.
 
 The second part of the output shows the response from Stratum:
-```
+```c
 RESPONSE
 notification {
   update {
@@ -311,7 +311,7 @@ protobuf message.
 We can rerun the command, but this time pipe the output through the converter
 utility (then pipe that output to `less` to make scrolling easier):
 
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 get / | util/oc-pb-decoder | less
 ```
 
@@ -332,7 +332,7 @@ particularly useful for subscriptions.
 First, let's try out the schema-less representation by requesting the
 configuration port between `leaf1` and `h1a`:
 
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 get \
     /interfaces/interface[name=leaf1-eth3]/config
 ```
@@ -340,7 +340,7 @@ $ util/gnmi-cli --grpc-addr localhost:50001 get \
 You should see this response containing 2 leafs under config - **enabled** and
 **health-indicator**:
 
-```
+```c
 RESPONSE
 notification {
   update {
@@ -401,14 +401,14 @@ is enabled (set to `true`).
 Next, we will subscribe to the ingress unicast packet counters for the interface
 on `leaf1` attached to `h1a` (port 3):
 
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 \
     --interval 1000 sub-sample \
     /interfaces/interface[name=leaf1-eth3]/state/counters/in-unicast-pkts
 ```
 
 The first part of the output shows the request being made by the CLI:
-```
+```c
 REQUEST
 subscribe {
   subscription {
@@ -444,7 +444,7 @@ We have the subscription path, the type of subscription (sampling) and the
 sampling rate (every 1000ms, or 1s).
 
 The second part of the output is a stream of responses:
-```
+```c
 RESPONSE
 update {
   timestamp: 1567895852136043891
@@ -483,7 +483,7 @@ generate some traffic.
 
 In another window, open the Mininet CLI and start a ping:
 
-```
+```c
 $ make mn-cli
 *** Attaching to Mininet CLI...
 *** To detach press Ctrl-D (Mininet will keep running)
@@ -500,14 +500,14 @@ Finally, we will monitor link events using gNMI's on-change subscriptions.
 
 Start a subscription for the operational status of the first switch's first port:
 
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 sub-onchange \
     /interfaces/interface[name=leaf1-eth3]/state/oper-status
 ```
 
 You should immediately see a response which indicates that port 1 is `UP`:
 
-```
+```c
 RESPONSE
 update {
   timestamp: 1567896668419430407
@@ -540,14 +540,14 @@ update {
 In the shell running the Mininet CLI, let's take down the interface on `leaf1`
 connected to `h1a`:
 
-```
+```c
 mininet> sh ifconfig leaf1-eth3 down
 ```
 
 You should see a response in your gNMI CLI window showing that the interface on
 `leaf1` connected to `h1a` is `DOWN`:
 
-```
+```c
 RESPONSE
 update {
   timestamp: 1567896891549363399
@@ -579,7 +579,7 @@ update {
 
 We can bring back the interface using the following Mininet command:
 
-```
+```c
 mininet> sh ifconfig leaf1-eth3 up
 ```
 
@@ -594,7 +594,7 @@ Leave your gNMI subscription for operational status changes running.
 
 In the Mininet CLI, start a ping between two hosts.
 
-```
+```c
 mininet> h1a ping h1b
 ```
 
@@ -603,7 +603,7 @@ You should see replies being showed in the Mininet CLI.
 In a third window, we will use the gNMI CLI to change the configuration value of
 the `enabled` leaf from `true` to `false`.
 
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 set \
     /interfaces/interface[name=leaf1-eth3]/config/enabled \
     --bool-val false
@@ -612,7 +612,7 @@ $ util/gnmi-cli --grpc-addr localhost:50001 set \
 In the gNMI set window, you should see a request indicating the new value for the
 `enabled` leaf:
 
-```
+```c
 REQUEST
 update {
   path {
@@ -642,7 +642,7 @@ update {
 In the gNMI subscription window, you should see a new response indicating that
 the operational status of `leaf1-eth3` is `DOWN`:
 
-```
+```c
 RESPONSE
 update {
   timestamp: 1567896891549363399
@@ -676,7 +676,7 @@ And in the Mininet CLI window, you should observe that the ping has stopped
 working.
 
 Next, we can re-nable the port:
-```
+```c
 $ util/gnmi-cli --grpc-addr localhost:50001 set \
     /interfaces/interface[name=leaf1-eth3]/config/enabled \
     --bool-val true
