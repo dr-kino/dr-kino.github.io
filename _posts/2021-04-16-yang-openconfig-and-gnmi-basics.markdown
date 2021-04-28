@@ -80,7 +80,8 @@ In the interface model, we can see the path to enable or disable an interface:
 `interfaces/interface[name]/config/enabled`
 
 What is the path to read the number of incoming packets (`in-pkts`) on an interface?
-
+  * <span style="color:cyan">interface/state/counters/in-pkts</span>
+  <div style="text-align:center"><img src="/images/posts/00021-A.png" /></div>
 ------
 
 *Extra Credit:* Take a look at the models in the
@@ -90,7 +91,9 @@ What is the path to read the number of incoming packets (`in-pkts`) on an interf
 Try to find the description of the `enabled` or `in-pkts` leaf nodes.
 
 *Hint:* Take a look at the `openconfig-interfaces.yang` file.
+  <div style="text-align:center"><img src="/images/posts/00021-B.png" /></div>
 
+  <div style="text-align:center"><img src="/images/posts/00021-C.png" /></div>
 ------
 
 ## 2. Understand YANG encoding
@@ -108,6 +111,8 @@ bash-4.4# pyang -f sample-xml-skeleton demo-port.yang
 
 This skeleton should match the tree representation we saw in part 1.
 
+  <div style="text-align:center"><img src="/images/posts/00021-D.png" /></div>
+
 We can also use `pyang` to generate a DSDL schema based on the YANG model:
 
 ```c
@@ -120,7 +125,8 @@ describes the value constraints for the leaf nodes.
 *Extra credit:* Try adding new speed identity (e.g. `SPEED_100G`) or changing
 the range for `port-number` values in `demo-port.yang`, then rerun `pyang -f
 dsdl`. Do you see your changes reflected in the DSDL schema?
-
+  * <span style="color:cyan">Yes.</span>
+  <div style="text-align:center"><img src="/images/posts/00021-E.png" /></div>
 ------
 
 Next, we will look at encoding data using Protocol Buffers (protobuf). The
@@ -159,6 +165,7 @@ bash-4.4# less /proto/tutorial/enums/enums.proto
 You should see an enum for the 10GB speed, along with any other speeds that you
 added if you completed the extra credit above.
 
+  <div style="text-align:center"><img src="/images/posts/00021-F.png" /></div>
 
 We can also use `proto_generator` to build the protobuf messages for the
 OpenConfig models that Stratum uses:
@@ -200,6 +207,9 @@ get the ingress packets counter in the protobuf messages.
 
 *Hint:* Searching by schemapath might help.
 
+  <div style="text-align:center"><img src="/images/posts/00021-G.png" /></div>
+
+  <div style="text-align:center"><img src="/images/posts/00021-H.png" /></div>
 ------
 
 `ygot` can also be used to generate Go structs that adhere to the YANG model
@@ -220,6 +230,8 @@ Take a look at the Go files in `/goSrc`.
 ------
 
 You can now quit out of the container (using `Ctrl-D` or `exit`).
+
+  <div style="text-align:center"><img src="/images/posts/00021-I.png" /></div>
 
 ## 3. Understanding YANG-enabled transport protocols
 
