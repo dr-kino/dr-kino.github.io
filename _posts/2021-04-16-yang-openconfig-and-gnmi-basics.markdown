@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Yang, OpenConfig and gNMI {In Progress}
+title: Yang, OpenConfig and gNMI
 tags:
   - computernetwork
 author:
