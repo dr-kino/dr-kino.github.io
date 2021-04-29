@@ -312,6 +312,8 @@ notification {
 }
 ```
 
+[Output file](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/solvings/exercise-2/gnmi-cli-command.txt)
+
 You can see that Stratum provides a response of type `openconfig.Device`, which
 is the top-level message defined in `openconfig.proto`. The response is the
 binary encoding of the data based on the protobuf message.
@@ -348,6 +350,7 @@ configuration port between `leaf1` and `h1a`:
 $ util/gnmi-cli --grpc-addr localhost:50001 get \
     /interfaces/interface[name=leaf1-eth3]/config
 ```
+[Output file]([Output file](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/solvings/exercise-2/config-port-leaf1-h1a.txt))
 
 You should see this response containing 2 leafs under config - **enabled** and
 **health-indicator**:
@@ -409,6 +412,8 @@ notification {
 The schema-less representation provides and `update` for each leaf containing
 both the path the value of the leaf. You can confirm that the interface
 is enabled (set to `true`).
+
+  <div style="text-align:center"><img src="/images/posts/00021-J.png" /></div>
 
 Next, we will subscribe to the ingress unicast packet counters for the interface
 on `leaf1` attached to `h1a` (port 3):
@@ -508,6 +513,8 @@ other traffic like NDP messages contributing to the increase.)
 
 You can stop the gNMI subscription using `Ctrl-C`.
 
+  <div style="text-align:center"><img src="/images/posts/gif/00021-A.gif" /></div>
+
 Finally, we will monitor link events using gNMI's on-change subscriptions.
 
 Start a subscription for the operational status of the first switch's first port:
@@ -597,6 +604,8 @@ mininet> sh ifconfig leaf1-eth3 up
 
 You should see another response in your gNMI CLI window that indicates the
 interface is `UP`.
+
+  <div style="text-align:center"><img src="/images/posts/gif/00021-B.gif" /></div>
 
 ------
 
@@ -696,3 +705,5 @@ $ util/gnmi-cli --grpc-addr localhost:50001 set \
 
 You should see another update in the gNMI subscription window indicating the
 interface is `UP`, and the ping should resume in the Mininet CLI wondow.
+
+  <div style="text-align:center"><img src="/images/posts/gif/00021-C.gif" /></div>
