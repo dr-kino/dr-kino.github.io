@@ -1,463 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: base
+title: DrKino
+menuOption: home
+---
 
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-  <title>DrKino</title>
-
-  <title>DrKino</title>
-  <meta name="description" content="Embedded Systems, RF, Control, Digital Processing, Analog Electronic, Security and Reverse Engineering.
-">
-
-  <meta name="keywords" content="Retro Vintage Programming Tinkering"/>
-
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/sitestyle.css" rel="stylesheet">
-  <link href="/css/html_pygments.css" rel="stylesheet">
-
-  <link rel="canonical" href="http://localhost:4000/">
-  <link rel="alternate" type="application/rss+xml" title="DR-KINO RSS Feed" href="http://feedproxy.google.com/DoctorKino" />
-
-  <!-- Fix for ie 5&6 where id doesnt render transparent images properly-->
-  <!--[if lte IE 6]>
-    <script defer type="text/javascript" src="/js/pngfix.js"></script>
-  <![endif]-->
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-    <script src="/js/html5shiv.3.7.2.min.js"></script>
-    <script src="/js/respond.1.4.2.min.js"></script>
-  <![endif]-->
-
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=vlifesystems"></script>
-
-  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-  <script type="text/javascript">
-      window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"/tandc/#privacy","theme":"dark-bottom"};
-  </script>
-
-  <script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
-  <!-- End Cookie Consent plugin -->
-</head>
-
-
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">DR-KINO</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li
-        
-          class="active"
-        
-        ><a href="/">Home</a></li>
-
-        <li
-        
-        ><a href="/archive">Archive</a></li>
-
-        
-
-        
-
-        
-
-        
-
-        <li
-        
-        ><a href="/about">About</a></li>
-      </ul>
-
-      <a href="http://feedproxy.google.com/" title="Subscribe to Doctor Kino's RSS Feed">
-        <img class="bannerIcon" src="/images/feed-icon-28x28.png" alt="RSS Feed"/>
-      </a>
-
-      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Youtube-Buttons-831.html -->
-      <a href="http://youtube.com/channel/UCcCZ8SFeAXsOfjU79PKy16A" title="Doctor Kino's YouTube Channel">
-        <img class="bannerIcon" src="/images/youtube-small-square-32.png" alt="YouTube Channel"/>
-      </a>
-
-      <!-- From: http://www.buttonshut.com/Get-Button-Huts-Code/Twitter-Buttons-1124.html -->
-      <a href="http://twitter.com/kino_dr" title="@kino_dr on Twitter">
-        <img class="bannerIcon" src="/images/twitter-button-36.png" alt="@kino_dr on Twitter"/>
-      </a>
-
-
-      <!-- From: http://www.graphicsfuel.com/2011/05/email-icon-psd/ -->
-      <a href="mailto:doctorkinoo@gmail.com" title="Email us, we'd love to hear from you">
-        <img class="bannerIcon" src="/images/email.png" alt="Email"/>
-      </a>
-
-      <a href="https://github.com/dr-kino/dr-kino.github.io" title="Doctor Kino On Github ">
-        <img class="bannerIcon" src="/images/octocat_fluid.png" alt="Doctor Kino Repo on  Github"/>
-      </a>
-
-    </div><!--/.nav-collapse -->
-  </div>
-
-</nav>
-
-
-    <div id="content" class="container">
-      <div class="row">
+<div class="row">
   <div class="col-md-8">
     <ul id="posts">
-      
+      {% for post in site.posts limit: 15 %}
         <li>
-          <header>
-  <h1><a href="/2021/03/30/next-generation-sdn-exercise-one/" title="Next Generation SDN - P4Runtime Basics">Next Generation SDN - P4Runtime Basics</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2021-03-30">30 March 2021</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/computernetwork">computernetwork</a> &nbsp; &nbsp;
-    
-      <a href="/tag/security">security</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>This post brings more details about the execution of P4Runtime Basics Tutorial that is part of the Next Generation SDN Tutorial. This post will cover the following topics:
-
-
-  Look at the P4 starter code
-  Compile it for the BMv2 software switch and understand the output (P4Info and BMv2 JSON fil... &nbsp; <a class="readMore" href="/2021/03/30/next-generation-sdn-exercise-one/">Read More</a></div>
-
-<br />
-
+          {% include post_summary.html %}
         </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2021/03/23/buffer-overflow/" title="Buffer Overflow Through Vulnerable Program (Unix OS)">Buffer Overflow Through Vulnerable Program (Unix OS)</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2021-03-23">23 March 2021</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/reverseengineering">reverseengineering</a> &nbsp; &nbsp;
-    
-      <a href="/tag/security">security</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>The following program is an example of insecure implementation that enable the user to inject shell commands during its execution. It uses the system() function that executes commands into the host environment through the command processor and it returns after the command has
-been completed.
-
-Sys... &nbsp; <a class="readMore" href="/2021/03/23/buffer-overflow/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2021/01/11/stack-overflow/" title="Stack Overflow Explained {In Progress}">Stack Overflow Explained {In Progress}</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2021-01-11">11 January 2021</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/reverseengineering">reverseengineering</a> &nbsp; &nbsp;
-    
-      <a href="/tag/security">security</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>
- &nbsp; <a class="readMore" href="/2021/01/11/stack-overflow/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/07/22/Beaglebone-black-soldering-jyag-connector/" title="Beaglebone Black - Soldering Jtag Connector">Beaglebone Black - Soldering Jtag Connector</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-07-22">22 July 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/hardware">hardware</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>The mostly goal in this article is to show how to soldering a JTAG connector in the Beaglebone Black (BBB) board, then in the next post I hope to show you how to connect it with J-Link Segger 8.08.90, at least if it works :). Otherwise, at least you can see here the pinout related to P2 connector... &nbsp; <a class="readMore" href="/2020/07/22/Beaglebone-black-soldering-jyag-connector/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/07/08/NuttX-build-for-beaglebone-black/" title="Building NuttX for Beaglebone Black (BBB)">Building NuttX for Beaglebone Black (BBB)</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-07-08"> 8 July 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/embeddedsystems">embeddedsystems</a> &nbsp; &nbsp;
-    
-      <a href="/tag/digitalprocessing">digitalprocessing</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>To follow this tutorial (Linux), besides the Beaglebone Black (BBB),  you will need a computer to build the NuttX OS, one microSD card, one serial-usb adapter and any serial software to interfaces with BBB. After complete the check list, is time to execute some commands.
-
-Setting up the Developme... &nbsp; <a class="readMore" href="/2020/07/08/NuttX-build-for-beaglebone-black/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/06/26/control-systems-the-step-response/" title="Control Systems - The Step Response">Control Systems - The Step Response</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-06-26">26 June 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/control">control</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>In this post I want to cover some interesting things about step response and I hope to clarify via examples what the step response is and how it can be used to specify the design for closed-loop control systems, to do that I will use program laguage for Octave. So, to answer the question “What is... &nbsp; <a class="readMore" href="/2020/06/26/control-systems-the-step-response/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/06/25/heterogeneous-co-simulation-software-and-hardware/" title="Heterogeneous Co-Simulation - Software and Hardware">Heterogeneous Co-Simulation - Software and Hardware</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-06-25">25 June 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/embeddedsystems">embeddedsystems</a> &nbsp; &nbsp;
-    
-      <a href="/tag/digitalprocessing">digitalprocessing</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>The idea to write this post appeared some years ago when I was working as a FPGA Developer, I was amazed with the possibility to test my stuffs in a complete simulated environment, my goal here is make this tutorial simple and guided by practical exercise to clarify the co-simulation usage. When ... &nbsp; <a class="readMore" href="/2020/06/25/heterogeneous-co-simulation-software-and-hardware/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/06/18/scxml-state-machine-generating-c-code-using-xmlstarlet/" title="State Chart XML SCXML - Generating C Code Using XMLStarlet">State Chart XML SCXML - Generating C Code Using XMLStarlet</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-06-18">18 June 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/embeddedsystems">embeddedsystems</a> &nbsp; &nbsp;
-    
-      <a href="/tag/softwaredevelopment">softwaredevelopment</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>SCXML stands for State Chart XML: State Machine Notation for Control Abstraction. It is an XML-base markup language that provides a generic state-machine-based execution environment based on Harel statecharts.
-
- &nbsp; <a class="readMore" href="/2020/06/18/scxml-state-machine-generating-c-code-using-xmlstarlet/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/06/15/Two-wheeler-balancing-robot/" title="Two-Wheeler balancing robot">Two-Wheeler balancing robot</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-06-15">15 June 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/control">control</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>The 2-Wheeler Balancing Mechanical Kit is used to apply control laws related to inverted pendulum, with this mechanical kit I will start a serie related to control this kit. For this task I will use the Hercules LaunchPad, based on TMS-570 microcontrollers from Texas Instruments.
-
-In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-balancing-robot/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/06/12/Tasks-creation-in-Hercules-Launchpad/" title="Tasks creation in Hercules LauchPad">Tasks creation in Hercules LauchPad</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-06-12">12 June 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/embeddedsystems">embeddedsystems</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>The Hercules TMS570LS04 LaunchPad Development Kit is an inexpensive evaluation platform designed to help usere and get started on development with Hercules microcontrollers platform.
-
-
- &nbsp; <a class="readMore" href="/2020/06/12/Tasks-creation-in-Hercules-Launchpad/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/06/12/Communication-wireless-using-3DR-radio-telemetry/" title="Communication wireless using 3DR Telemetry Radio">Communication wireless using 3DR Telemetry Radio</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-06-12">12 June 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/rf">rf</a> &nbsp; &nbsp;
-    
-      <a href="/tag/embeddedsystems">embeddedsystems</a> &nbsp; &nbsp;
-    
-      <a href="/tag/control">control</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>The 3DR Radio is the easiest way to setup a telemetry connection between your autopilot and a ground station. Bellow you can see the simple test setup using a computer, any serial-usb adapter and a couple of telemetry radio, to prepare the setup you just need to connect the ground module directly... &nbsp; <a class="readMore" href="/2020/06/12/Communication-wireless-using-3DR-radio-telemetry/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/05/09/Operational-amplifier-series-comparator/" title="Operational Amplifier Series - Comparator Circuit">Operational Amplifier Series - Comparator Circuit</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-05-09"> 9 May 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/analogelectronic">analogelectronic</a> &nbsp; &nbsp;
-    
-      <a href="/tag/embeddedsystems">embeddedsystems</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>From the datasheet, the LM741 can be operated in an open-loop configuration.The magnitude of the open-loop gain is typically large thus for a small difference between the non inverting and inverting input terminals, the amplifier output will be driven near the supply voltage. Without negative fee... &nbsp; <a class="readMore" href="/2020/05/09/Operational-amplifier-series-comparator/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2020/01/09/Reading-xml-file-with-libxml2/" title="Reading XML Files in C++ (libxml2)">Reading XML Files in C++ (libxml2)</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2020-01-09"> 9 January 2020</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/softwaredevelopment">softwaredevelopment</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>XML files could be very useful for many kind of application, as configuration storage, software interface, resource for code generator, etc.
- &nbsp; <a class="readMore" href="/2020/01/09/Reading-xml-file-with-libxml2/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2019/12/29/Setup-to-use-uncrustify-and-git/" title="Setting up Uncrustify Tool for Git Automation (C/C++ Languages)">Setting up Uncrustify Tool for Git Automation (C/C++ Languages)</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2019-12-29">29 December 2019</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/softwaredevelopment">softwaredevelopment</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>Uncrustify is a tool used to fit a standard for a program language aplying style according to the configuration file, it turns the code as a standardized code. This tool is very used in cases of large projects that is difficult to disseminate a coding conventions or in cases of each team member u... &nbsp; <a class="readMore" href="/2019/12/29/Setup-to-use-uncrustify-and-git/">Read More</a></div>
-
-<br />
-
-        </li>
-      
-        <li>
-          <header>
-  <h1><a href="/2019/12/27/Investigating-Car-Key-Control/" title="Investigating Car Key (RF Remote Control) With HackRF One - Part 1">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></h1>
-  
-  <span class="tagLine">
-    <time datetime="2019-12-27">27 December 2019</time>
-    &nbsp; Tags:
-    
-      <a href="/tag/reverseengineering">reverseengineering</a> &nbsp; &nbsp;
-    
-      <a href="/tag/security">security</a> &nbsp; &nbsp;
-    
-      <a href="/tag/rf">rf</a> &nbsp; &nbsp;
-    
-  </span>
-
-</header>
-
-  <div>First of all, I would like to register that this post has no intention to teach how to break the laws, to ensure this I will omit the car model and suppress any other information that could open a window for malicius people. I want to mension that it is just a theme that should be developed for s... &nbsp; <a class="readMore" href="/2019/12/27/Investigating-Car-Key-Control/">Read More</a></div>
-
-<br />
-
-        </li>
-      
+      {% endfor %}
     </ul>
 
     <div class="moreArticles">
@@ -469,80 +23,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Embedded Systems</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/07/08/NuttX-build-for-beaglebone-black/">Building NuttX for Beaglebone Black (BBB)</a></li>
-          
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/25/heterogeneous-co-simulation-software-and-hardware/">Heterogeneous Co-Simulation - Software and Hardware</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/18/scxml-state-machine-generating-c-code-using-xmlstarlet/">State Chart XML SCXML - Generating C Code Using XMLStarlet</a></li>
-          
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/12/Tasks-creation-in-Hercules-Launchpad/">Tasks creation in Hercules LauchPad</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/12/Communication-wireless-using-3DR-radio-telemetry/">Communication wireless using 3DR Telemetry Radio</a></li>
-          
-        
-      
-        
-          
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-        
-      
-        
-          
-          
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "embeddedsystems" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/embeddedsystems#item5">More Embedded Systems Articles</a>
@@ -550,56 +39,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>RF</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/12/Communication-wireless-using-3DR-radio-telemetry/">Communication wireless using 3DR Telemetry Radio</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2019/12/27/Investigating-Car-Key-Control/">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "rf" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/rf#item5">More RF Articles</a>
@@ -607,61 +55,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Control Systems</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/26/control-systems-the-step-response/">Control Systems - The Step Response</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/15/Two-wheeler-balancing-robot/">Two-Wheeler balancing robot</a></li>
-          
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/12/Communication-wireless-using-3DR-radio-telemetry/">Communication wireless using 3DR Telemetry Radio</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "control" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/control#item5">More Control Articles</a>
@@ -669,61 +71,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Digital Processing</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/07/08/NuttX-build-for-beaglebone-black/">Building NuttX for Beaglebone Black (BBB)</a></li>
-          
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/25/heterogeneous-co-simulation-software-and-hardware/">Heterogeneous Co-Simulation - Software and Hardware</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2017/12/19/vhdl-two-logic-gates-analysis/">VHDL - Two Logic Gates Analysis</a></li>
-          
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "digitalprocessing" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/digitalprocessing#item5">More Digital Processing Articles</a>
@@ -731,51 +87,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Analog Electronic</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/05/09/Operational-amplifier-series-comparator/">Operational Amplifier Series - Comparator Circuit</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "analogelectronic" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/analogelectronic#item5">More Analog Electronic Articles</a>
@@ -783,71 +103,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Security</h2>
     <ul class="briefPosts">
-      
-      
-        
-          
-          
-            <li><a href="/2021/03/30/next-generation-sdn-exercise-one/">Next Generation SDN - P4Runtime Basics</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2021/03/23/buffer-overflow/">Buffer Overflow Through Vulnerable Program (Unix OS)</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2021/01/11/stack-overflow/">Stack Overflow Explained {In Progress}</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2019/12/27/Investigating-Car-Key-Control/">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/">Reversing a BIOS Flash Via Hardware - First Steps</a></li>
-          
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "security" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/security#item5">More Security Articles</a>
@@ -855,66 +119,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Reverse Engineering</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-          
-          
-            <li><a href="/2021/03/23/buffer-overflow/">Buffer Overflow Through Vulnerable Program (Unix OS)</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2021/01/11/stack-overflow/">Stack Overflow Explained {In Progress}</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2019/12/27/Investigating-Car-Key-Control/">Investigating Car Key (RF Remote Control) With HackRF One - Part 1</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2017/11/24/reversing-a-bios-flash-via-hardware-first-steps/">Reversing a BIOS Flash Via Hardware - First Steps</a></li>
-          
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "reverseengineering" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/reverseengineering#item5">More Reverse Engineering Articles</a>
@@ -922,71 +135,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Software Development</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/06/18/scxml-state-machine-generating-c-code-using-xmlstarlet/">State Chart XML SCXML - Generating C Code Using XMLStarlet</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/01/09/Reading-xml-file-with-libxml2/">Reading XML Files in C++ (libxml2)</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2019/12/29/Setup-to-use-uncrustify-and-git/">Setting up Uncrustify Tool for Git Automation (C/C++ Languages)</a></li>
-          
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2019/12/22/test-coverage-using-gtest-gcov-and-lcov/">Test Coverage Using Google Test, GCov and LCov</a></li>
-          
-        
-      
-        
-          
-          
-            <li><a href="/2019/11/04/base-project-to-use-gtest-and-gmock-in-unittest/">Base Project to Use GTest and GMock for Unit Tests</a></li>
-          
-        
-      
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "softwaredevelopment" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/softwaredevelopment#item5">More Software Development Articles</a>
@@ -994,51 +151,15 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Hardware</h2>
     <ul class="briefPosts">
-      
-      
-        
-      
-        
-      
-        
-      
-        
-          
-          
-            <li><a href="/2020/07/22/Beaglebone-black-soldering-jyag-connector/">Beaglebone Black - Soldering Jtag Connector</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "hardware" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/hardware#item5">More Hardware Articles</a>
@@ -1046,95 +167,35 @@ In the next ima... &nbsp; <a class="readMore" href="/2020/06/15/Two-wheeler-bala
 
     <h2>Computer Network</h2>
     <ul class="briefPosts">
-      
-      
-        
-          
-          
-            <li><a href="/2021/03/30/next-generation-sdn-exercise-one/">Next Generation SDN - P4Runtime Basics</a></li>
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "computernetwork" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </ul>
     <div class="moreArticles">
       <a href="/tag/computernetwork#item5">More Computer Network Articles</a>
     </div>
 
+    <h2>Task Automation</h2>
+    <ul class="briefPosts">
+      {% assign numFound = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains "taskautomation" %}
+          {% assign numFound = numFound | plus: 1 %}
+          {% if numFound <= 5 %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="moreArticles">
+      <a href="/tag/taskautomation#item5">More Task Automation Articles</a>
+    </div>
+
   </div>
 </div>
-
-    </div>
-
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <strong>Legal:</strong> &nbsp;
-        <a href="/tandc/">Terms</a>
-
-        &nbsp; &nbsp;
-        <strong>RSS Feeds:</strong> &nbsp;
-        <a href="http://feedproxy.google.com/DoctorKino" title="Subscribe to DoctorKino's RSS Feed">Full</a>,
-        <a href="http://feedproxy.google.com/DoctorKino-ReverseEngineeringPosts" title="Subscribe to DoctorKino's RSS Feed">ReverseEngineering</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170851532-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-170851532-1');
-    </script>
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/js/bootstrap.min.js"></script>
-
-  </body>
-</html>
