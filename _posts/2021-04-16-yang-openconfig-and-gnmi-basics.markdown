@@ -350,7 +350,7 @@ configuration port between `leaf1` and `h1a`:
 $ util/gnmi-cli --grpc-addr localhost:50001 get \
     /interfaces/interface[name=leaf1-eth3]/config
 ```
-[Output file]([Output file](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/solvings/exercise-2/config-port-leaf1-h1a.txt))
+[Output file](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/solvings/exercise-2/config-port-leaf1-h1a.txt)
 
 You should see this response containing 2 leafs under config - **enabled** and
 **health-indicator**:
