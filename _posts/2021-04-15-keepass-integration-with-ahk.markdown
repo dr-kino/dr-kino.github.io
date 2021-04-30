@@ -92,4 +92,4 @@ if "%z%" == "The composite key is invalid!" (
 
 So, feel free to use and adapt it to your purpose.
 
-Repository: https://github.com/dr-kino/HarpocratesAuto
+Repository: [https://github.com/dr-kino/HarpocratesAuto](https://github.com/dr-kino/HarpocratesAuto)
