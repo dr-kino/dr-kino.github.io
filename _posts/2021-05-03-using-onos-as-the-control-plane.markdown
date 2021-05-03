@@ -24,7 +24,7 @@ This post brings more details about the execution of [Using ONOS as the Control 
 
 In a terminal window, type:
 
-```
+```c
 $ make restart
 ```
 
@@ -38,7 +38,7 @@ during startup.
 
 In our case, this variable has value:
 
-```
+```c
 ONOS_APPS=gui2,drivers.bmv2,lldpprovider,hostprovider
 ```
 
@@ -56,12 +56,12 @@ To **verify that all required apps have been activated**, run the following
 command in a new terminal window to access the ONOS CLI. Use password `rocks`
 when prompted:
 
-```
+```c
 $ make onos-cli
 ```
 
 If you see the following error, then ONOS is still starting; wait a minute and try again.
-```
+```c
 ssh_exchange_identification: Connection closed by remote host
 make: *** [onos-cli] Error 255
 ```
@@ -69,13 +69,13 @@ make: *** [onos-cli] Error 255
 When you see the Password prompt, type the default password: `rocks`. 
 Then type the following command in the ONOS CLI to show the list of running apps:
 
-```
+```c
 onos> apps -a -s
 ```
 
 Make sure you see the following list of apps displayed:
 
-```
+```c
 *   5 org.onosproject.protocols.grpc        2.2.2    gRPC Protocol Subsystem
 *   6 org.onosproject.protocols.gnmi        2.2.2    gNMI Protocol Subsystem
 *  29 org.onosproject.drivers               2.2.2    Default Drivers
@@ -105,7 +105,7 @@ lacks support in the P4 program. We suggest you deactivate it for the rest of
 this exercise, to avoid running into issues. Use the following ONOS
 CLI command to deactivate the link discovery service.
 
-```
+```c
 onos> app deactivate lldpprovider
 ```
 
@@ -132,7 +132,7 @@ ONOS app that includes a pipeconf. The pipeconf-related files are the following:
 To build the ONOS app (including the pipeconf), run the following
 command in the second terminal window:
 
-```
+```c
 $ make app-build
 ```
 
@@ -141,7 +141,7 @@ that we will use to install the application in the running ONOS instance.
 
 Use the following command to load the app into ONOS and activate it:
 
-```
+```c
 $ make app-reload
 ```
 
@@ -149,7 +149,7 @@ After the app has been activated, you should see the following messages in the
 ONOS log (`make onos-log`) signaling that the pipeconf has been registered and
 the different app components have been started:
 
-```
+```c
 INFO  [PiPipeconfManager] New pipeconf registered: org.onosproject.ngsdn-tutorial (fingerprint=...)
 INFO  [MainComponent] Started
 ```
@@ -157,7 +157,7 @@ INFO  [MainComponent] Started
 Alternatively, you can show the list of registered pipeconfs using the ONOS CLI
 (`make onos-cli`) command:
 
-```
+```c
 onos> pipeconfs
 ```
 
@@ -180,7 +180,7 @@ the next exercises.
 
 On a terminal window, type:
 
-```
+```c
 $ make netcfg
 ```
 
@@ -189,7 +189,7 @@ configuration of the 4 switches.
 
 Check the ONOS log (`make onos-log`), you should see messages like:
 
-```
+```c
 INFO  [GrpcChannelControllerImpl] Creating new gRPC channel grpc:///mininet:50001?device_id=1...
 ...
 INFO  [StreamClientImpl] Setting mastership on device:leaf1...
@@ -211,7 +211,7 @@ INFO  [DeviceManager] Device device:leaf1 port [leaf1-eth6](6) status changed (e
 Access the ONOS CLI using `make onos-cli`. Enter the following command to
 verify the network config pushed before:
 
-```
+```c
 onos> netcfg
 ```
 
@@ -219,7 +219,7 @@ onos> netcfg
 
 Verify that all 4 devices have been discovered and are connected:
 
-```
+```c
 onos> devices -s
 id=device:leaf1, available=true, role=MASTER, type=SWITCH, driver=stratum-bmv2:org.onosproject.ngsdn-tutorial
 id=device:leaf2, available=true, role=MASTER, type=SWITCH, driver=stratum-bmv2:org.onosproject.ngsdn-tutorial
@@ -236,7 +236,7 @@ channel open to the device and the pipeline configuration has been pushed.
 Check port information, obtained by ONOS by performing a gNMI Get RPC for the
 OpenConfig Interfaces model:
 
-```
+```c
 onos> ports -s device:spine1
 id=device:spine1, available=true, role=MASTER, type=SWITCH, driver=stratum-bmv2:org.onosproject.ngsdn-tutorial
   port=[spine1-eth1](1), state=enabled, type=copper, speed=10000 , ...
@@ -246,7 +246,7 @@ id=device:spine1, available=true, role=MASTER, type=SWITCH, driver=stratum-bmv2:
 Check port statistics, also obtained by querying the OpenConfig Interfaces model
 via gNMI:
 
-```
+```c
 onos> portstats device:spine1
 deviceId=device:spine1
    port=[spine1-eth1](1), pktRx=114, pktTx=114, bytesRx=14022, bytesTx=14136, pktRxDrp=0, pktTxDrp=0, Dur=173
@@ -259,7 +259,7 @@ deviceId=device:spine1
 Check the ONOS flow rules. You should see three flow rules for each device. For
 example, to show all flow rules installed so far on device `leaf1`:
 
-```
+```c
 onos> flows -s any device:leaf1
 deviceId=device:leaf1, flowRuleCount=3
     ADDED, bytes=0, packets=0, table=IngressPipeImpl.acl_table, priority=40000, selector=[ETH_TYPE:arp], treatment=[immediate=[IngressPipeImpl.clone_to_cpu()]]
@@ -273,7 +273,7 @@ This list include flow rules installed by the ONOS built-in services such as
 
 To show all groups installed so far, you can use the `groups` command. For
 example to show groups on `leaf1`:
-```
+```c
 onos> groups any device:leaf1
 deviceId=device:leaf1, groupCount=1
    id=0x63, state=ADDED, type=CLONE, bytes=0, packets=0, appId=org.onosproject.core, referenceCount=0
@@ -333,14 +333,14 @@ You can use the P4Runtime shell to dump all table entries currently
 installed on the switch by ONOS. In a separate terminal window, start a
 P4Runtime shell for leaf1:
 
-```
+```c
 $ util/p4rt-sh --grpc-addr localhost:50001 --election-id 0,1
 ```
 
 On the shell prompt, type the following command to dump all entries from the ACL
 table:
 
-```
+```c
 P4Runtime sh >>> for te in table_entry["IngressPipeImpl.acl_table"].read():
             ...:     print(te)
             ...:
@@ -350,7 +350,7 @@ You should see exactly three entries, each one corresponding to a flow rule
 in ONOS. For example, the flow rule matching on NDP NS packets should look
 like this in the P4runtime shell:
 
-```
+```c
 table_id: 33557865 ("IngressPipeImpl.acl_table")
 match {
   field_id: 4 ("hdr.ethernet.ether_type")
@@ -387,7 +387,7 @@ ONOS provides a debugging feature that dumps all gRPC messages
 exchanged with a device to a file. To enable this feature, type the
 following command in the ONOS CLI (`make onos-cli`):
 
-```
+```c
 onos> cfg set org.onosproject.grpc.ctl.GrpcChannelControllerImpl enableMessageLog true
 ```
 
@@ -406,7 +406,7 @@ in Protobuf Text format for messages like:
 Remember to disable the gRPC message logging in ONOS when you're done, to avoid
 affecting performances:
 
-```
+```c
 onos> cfg set org.onosproject.grpc.ctl.GrpcChannelControllerImpl enableMessageLog false
 ```
 
