@@ -32,7 +32,7 @@ This command will restart the ONOS and Mininet containers, in case those were
 running from previous exercises, clearing any previous state.
 
 The parameters to start the ONOS container are specified in [docker
--compose.yml](docker-compose.yml). The container is configured to pass the
+-compose.yml](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/docker-compose.yml). The container is configured to pass the
 environment variable `ONOS_APPS`, used to define the built-in apps to load
 during startup.
 
@@ -94,6 +94,8 @@ Make sure you see the following list of apps displayed:
 * 181 org.onosproject.drivers.bmv2          2.2.2    BMv2 Drivers
 ```
 
+<div style="text-align:center"><img src="/images/posts/00022-A.png" /></div>
+
 There are definitely more apps than defined in `$ONOS_APPS`. That's
 because each app in ONOS can define other apps as dependencies. When loading an
 app, ONOS automatically resolves dependencies and loads all other required apps.
@@ -119,14 +121,14 @@ restart` to restart both Mininet and ONOS.
 
 ## 2. Build app and register pipeconf
 
-Inside the [app/](./app) directory you will find a starter implementation of an
+Inside the [app/](https://github.com/dr-kino/ngsdn-tutorial/tree/advanced/app) directory you will find a starter implementation of an
 ONOS app that includes a pipeconf. The pipeconf-related files are the following:
 
-* [PipeconfLoader.java][PipeconfLoader.java]: A component that registers the
+* [PipeconfLoader.java](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/app/src/main/java/org/onosproject/ngsdn/tutorial/pipeconf/PipeconfLoader.java): A component that registers the
   pipeconf at app activation;
-* [InterpreterImpl.java][InterpreterImpl.java]: An implementation of the
+* [InterpreterImpl.java](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/app/src/main/java/org/onosproject/ngsdn/tutorial/pipeconf/InterpreterImpl.java): An implementation of the
   `PipelineInterpreter` driver behavior;
-* [PipelinerImpl.java][PipelinerImpl.java]: An implementation of the `Pipeliner`
+* [PipelinerImpl.java](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/app/src/main/java/org/onosproject/ngsdn/tutorial/pipeconf/PipelinerImpl.java): An implementation of the `Pipeliner`
   driver behavior;
 
 To build the ONOS app (including the pipeconf), run the following
