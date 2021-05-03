@@ -156,6 +156,8 @@ INFO  [PiPipeconfManager] New pipeconf registered: org.onosproject.ngsdn-tutoria
 INFO  [MainComponent] Started
 ```
 
+<div style="text-align:center"><img src="/images/posts/00022-B.png" /></div>
+
 Alternatively, you can show the list of registered pipeconfs using the ONOS CLI
 (`make onos-cli`) command:
 
