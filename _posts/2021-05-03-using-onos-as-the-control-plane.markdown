@@ -165,17 +165,19 @@ Alternatively, you can show the list of registered pipeconfs using the ONOS CLI
 onos> pipeconfs
 ```
 
+<div style="text-align:center"><img src="/images/posts/00022-C.png" /></div>
+
 ## 3. Push netcfg to ONOS
 
 Now that ONOS and Mininet are running, it's time to let ONOS know how to reach
 the four switches and control them. We do this by using a configuration file
-located at [mininet/netcfg.json](mininet/netcfg.json), which contains
+located at [mininet/netcfg.json](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/mininet/netcfg.json), which contains
 information such as:
 
 * The gRPC address and port associated with each Stratum device;
 * The ONOS driver to use for each device, `stratum-bmv2` in this case;
 * The pipeconf to use for each device, `org.onosproject.ngsdn-tutorial` in this
-  case, as defined in [PipeconfLoader.java][PipeconfLoader.java];
+  case, as defined in [PipeconfLoader.java](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/app/src/main/java/org/onosproject/ngsdn/tutorial/pipeconf/PipeconfLoader.java);
 * Configuration specific to our custom app (`fabricDeviceConfig`)
 
 This file also contains information related to the IPv6 configuration associated
@@ -315,16 +317,15 @@ In the ONOS topology view click on one of the switches (e.g `device:leaf1`)
 and the Device Details panel appears. In that panel click on the Pipeconf icon
 (the last one), to open the Pipeconf view for that device.
 
-![device-leaf1-details-panel](img/device-leaf1-details-panel.png)
+<div style="text-align:center"><img src="/images/posts/00022-D.png" /></div>
 
 Here you will find info on the pipeconf currently used by the specific device,
 including details of the P4 tables.
 
-![onos-gui-pipeconf-leaf1](img/onos-gui-pipeconf-leaf1.png)
+<div style="text-align:center"><img src="/images/posts/00022-E.png" /></div>
 
 Clicking the table row brings up the details panel, showing details of the match
 fields, actions, action parameter bit widths, etc.
-
 
 ## Congratulations!
 
