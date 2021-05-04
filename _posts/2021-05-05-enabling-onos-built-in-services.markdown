@@ -36,7 +36,7 @@ carrying arbitrary metadata in P4Runtime `PacketIn` and `PacketOut` messages.
 Two special headers are defined and annotated with the standard P4 annotation
 `@controller_header`:
 
-```p4
+```c
 @controller_header("packet_in")
 header cpu_in_header_t {
     port_num_t ingress_port;
@@ -174,7 +174,7 @@ classes will still be used. For this reason, to reload a modified version of
 
 In a terminal window, type:
 
-```
+```c
 $ make restart
 ```
 
@@ -188,7 +188,7 @@ the ONOS log (`make onos-log`) until no more messages are shown.
 
 On a terminal window, type:
 
-```
+```c
 $ make app-reload
 ```
 
@@ -198,13 +198,13 @@ This command will upload to ONOS and activate the app binary previously built (l
 
 On a terminal window, type:
 
-```
+```c
 $ make netcfg
 ```
 
 Use the ONOS CLI to verify that all devices have been discovered:
 
-```
+```c
 onos> devices -s
 id=device:leaf1, available=true, role=MASTER, type=SWITCH, driver=stratum-bmv2:org.onosproject.ngsdn-tutorial
 id=device:leaf2, available=true, role=MASTER, type=SWITCH, driver=stratum-bmv2:org.onosproject.ngsdn-tutorial
@@ -216,7 +216,7 @@ Verify that all links have been discovered. You should see 8 links in total,
 each one representing a direction of the 4 bidirectional links of our Mininet
 topology:
 
-```
+```c
 onos> links
 src=device:leaf1/1, dst=device:spine1/1, type=DIRECT, state=ACTIVE, expected=false
 src=device:leaf1/2, dst=device:spine2/1, type=DIRECT, state=ACTIVE, expected=false
@@ -236,7 +236,7 @@ step 3.
 You should see 5 flow rules for each device. For example,
 to show all flow rules installed so far on device `leaf1`:
 
-```
+```c
 onos> flows -s any device:leaf1
 deviceId=device:leaf1, flowRuleCount=5
     ADDED, ..., table=IngressPipeImpl.acl_table, priority=40000, selector=[ETH_TYPE:lldp], treatment=[immediate=[IngressPipeImpl.clone_to_cpu()]]
@@ -270,7 +270,7 @@ discovery.
 All flow rules refer to P4 action `clone_to_cpu()`, which invokes a
 v1model-specific primitive to set the clone session ID:
 
-```p4
+```c
 action clone_to_cpu() {
     clone3(CloneType.I2E, CPU_CLONE_SESSION_ID, ...);
 }
@@ -283,7 +283,7 @@ ports, just the CPU one in this case.
 
 To show all groups installed in ONOS, you can use the `groups` command. For
 example, to show groups on `leaf1`:
-```
+```c
 onos> groups any device:leaf1
 deviceId=device:leaf1, groupCount=1
    id=0x63, state=ADDED, type=CLONE, ..., appId=org.onosproject.core, referenceCount=0
@@ -370,7 +370,7 @@ memories, usually much smaller).
 These tables are applied to packets in an order defined in the `apply` block
 of the ingress pipeline (`IngressPipeImpl`):
 
-```p4
+```c
 if (!l2_exact_table.apply().hit) {
     l2_ternary_table.apply();
 }
@@ -437,7 +437,7 @@ currently disabled.
 After reloading the app, you should see the following messages in the ONOS log
 (`make onos-log`):
 
-```
+```c
 INFO  [L2BridgingComponent] Started
 ...
 INFO  [L2BridgingComponent] *** L2 BRIDGING - Starting initial set up for device:leaf1...
@@ -456,7 +456,7 @@ Check the ONOS flow rules, you should see 2 new flow rules for the
 `l2_ternary_table` installed by L2BridgingComponent. For example, to show
 all flow rules installed so far on device `leaf1`:
 
-```
+```c
 onos> flows -s any device:leaf1
 deviceId=device:leaf1, flowRuleCount=...
     ...
@@ -467,7 +467,7 @@ deviceId=device:leaf1, flowRuleCount=...
 
 To show also the multicast groups, you can use the `groups` command. For example
 to show groups on `leaf1`:
-```
+```c
 onos> groups any device:leaf1
 deviceId=device:leaf1, groupCount=2
    id=0x63, state=ADDED, type=CLONE, ..., appId=org.onosproject.core, referenceCount=0
@@ -488,7 +488,7 @@ case used to broadcast NDP NS packets to all host-facing ports.
 To verify that L2 bridging works as intended, send a ping between hosts in the
 same subnet:
 
-```
+```c
 mininet> h1a ping h1b
 PING 2001:1:1::b(2001:1:1::b) 56 data bytes
 64 bytes from 2001:1:1::b: icmp_seq=2 ttl=64 time=0.580 ms
@@ -505,7 +505,7 @@ by ONOS. Host discovery events are used by `L2BridgingComponent.java` to insert
 entries in the P4 `l2_exact_table`. Check the ONOS log, you should see messages
 related to the discovery of hosts `h1a` and `h1b`:
 
-```
+```c
 INFO  [L2BridgingComponent] HOST_ADDED event! host=00:00:00:00:00:1A/None, deviceId=device:leaf1, port=3
 INFO  [L2BridgingComponent] Adding L2 unicast rule on device:leaf1 for host 00:00:00:00:00:1A/None (port 3)...
 INFO  [L2BridgingComponent] HOST_ADDED event! host=00:00:00:00:00:1B/None, deviceId=device:leaf1, port=4
@@ -516,7 +516,7 @@ INFO  [L2BridgingComponent] Adding L2 unicast rule on device:leaf1 for host 00:0
 
 You should see exactly two hosts in the ONOS CLI (`make onos-cli`):
 
-```
+```c
 onos> hosts -s
 id=00:00:00:00:00:1A/None, mac=00:00:00:00:00:1A, locations=[device:leaf1/3], vlan=None, ip(s)=[2001:1:1::a]
 id=00:00:00:00:00:1B/None, mac=00:00:00:00:00:1B, locations=[device:leaf1/4], vlan=None, ip(s)=[2001:1:1::b]
