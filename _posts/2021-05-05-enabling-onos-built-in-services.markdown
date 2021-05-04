@@ -98,16 +98,22 @@ obtained after compiling the P4 program (`p4src/build/p4info.txt`).
 
 To run all the tests for this exercise:
 
+```c
     make p4-test TEST=packetio
+```
 
 This command will run all tests in the `packetio` group (i.e. the content of
 `ptf/tests/packetio.py`). To run a specific test case you can use:
 
+```c
     make p4-test TEST=<PYTHON MODULE>.<TEST CLASS NAME>
+```
 
 For example:
 
+```c
     make p4-test TEST=packetio.PacketOutTest
+```
 
 #### Check for regressions
 
@@ -525,12 +531,6 @@ id=00:00:00:00:00:1B/None, mac=00:00:00:00:00:1B, locations=[device:leaf1/4], vl
 Using the ONF Cloud Tutorial Portal, access the ONOS UI.
 If you are running the VM on your laptop, open up a browser (e.g. Firefox) to
 <http://127.0.0.1:8181/onos/ui>.
-
-To toggle showing hosts on the topology view, press `H` on your keyboard.
-
-## Congratulations!
-
-You have completed the fourth exercise!
 
 [PipeconfLoader.java]: app/src/main/java/org/onosproject/ngsdn/tutorial/pipeconf/PipeconfLoader.java
 [InterpreterImpl.java]: app/src/main/java/org/onosproject/ngsdn/tutorial/pipeconf/InterpreterImpl.java
