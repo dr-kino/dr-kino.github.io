@@ -31,7 +31,7 @@ We start by reviewing how controller packet I/O works with P4Runtime.
 
 ### Background: Controller packet I/O with P4Runtime
 
-The P4 program under [p4src/main.p4](p4src/main.p4) provides support for
+The P4 program under [p4src/main.p4](https://github.com/dr-kino/ngsdn-tutorial/blob/advanced/p4src/main.p4) provides support for
 carrying arbitrary metadata in P4Runtime `PacketIn` and `PacketOut` messages.
 Two special headers are defined and annotated with the standard P4 annotation
 `@controller_header`:
@@ -84,6 +84,8 @@ modify the P4 program to implement it:
 
 At this point, our P4 pipeline should be ready for testing.
 
+<div style="text-align:center"><img src="/images/posts/00023-A.png" /></div>
+
 ### 2. Run PTF tests
 
 Before starting ONOS, let's make sure the P4 changes work as expected by
@@ -120,9 +122,13 @@ For example:
 To make sures the new changes are not breaking other features, make sure to run
 tests for L2 bridging support.
 
+```c
     make p4-test TEST=bridging
+```
 
 If all tests succeed, congratulations! You can move to the next step.
+
+<div style="text-align:center"><img src="/images/posts/00023-B.png" /></div>
 
 #### How to debug failing tests?
 
